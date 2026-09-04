@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEAT6 — Sources</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E85D04'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='600' fill='white' text-anchor='middle'%3E6%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #111111;
+    --white: #FFFFFF;
+    --orange: #E85D04;
+    --ink: #111111;
+    --ink-soft: #5B5B5B;
+    --line: #E3E3E3;
+    --paper: #FFFFFF;
+    --display: 'Archivo Black', 'Public Sans', sans-serif;
+    --sans: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--ink); }
+  a:hover{ color:var(--orange); }
+
+  .siteheader{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2.2rem 1.5rem 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .wordmark{ display:flex; align-items:center; text-decoration:none; }
+  .wordmark img{ display:block; height: 1.9rem; width:auto; }
+  .siteheader__nav{ display:flex; align-items:center; gap:1.5rem; }
+  .siteheader__nav a{
+    font-family:var(--sans);
+    font-size:0.85rem;
+    font-weight:600;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .siteheader__nav a:hover{ color:var(--orange); }
+
+  .pagehead{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 2.5rem;
+  }
+  .pagehead h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2rem, 5vw, 2.9rem);
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    line-height:1.08;
+    margin: 0 0 1rem;
+  }
+  .pagehead p{
+    font-size:1.02rem;
+    color:var(--ink-soft);
+    max-width:60ch;
+    margin:0;
+  }
+
+  main{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  .region{ padding-top: 3rem; }
+  .region__head{
+    display:flex;
+    align-items:center;
+    gap:0.9rem;
+    margin-bottom: 0.6rem;
+  }
+  .region__tab{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:2.3rem;
+    height:2.3rem;
+    border-radius:6px;
+    background: var(--orange);
+    color:#fff;
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1rem;
+    flex-shrink:0;
+  }
+  .region__head h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:1.25rem;
+    text-transform: uppercase;
+    letter-spacing:0.01em;
+    color: var(--orange);
+    margin:0;
+    line-height:1.15;
+  }
+  .region__note{
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    margin: 0 0 1.3rem 3.2rem;
+    max-width: 58ch;
+  }
+
+  .linklist{
+    list-style:none;
+    margin:0 0 1.6rem;
+    padding:0;
+    border-top: 1px solid var(--line);
+  }
+  .linklist li{
+    border-bottom: 1px solid var(--line);
+    padding: 0.85rem 0.1rem;
+  }
+  .linklist a{
+    font-weight:600;
+    font-size:0.98rem;
+    text-decoration:none;
+    display:block;
+  }
+  .linklist a:hover{ color:var(--orange); }
+  .linklist .note{
+    color:var(--ink-soft);
+    font-size:0.86rem;
+    margin-top:0.2rem;
+  }
+
+  .coachgroup{ margin: 0 0 1.6rem; }
+  .coachgroup h3{
+    font-family:var(--sans);
+    font-size:0.95rem;
+    font-weight:700;
+    margin: 0 0 0.15rem;
+  }
+  .coachgroup .bio{
+    color:var(--ink-soft);
+    font-size:0.88rem;
+    margin: 0 0 0.6rem;
+    max-width:58ch;
+  }
+
+  .directories{
+    padding-top: 3rem;
+    border-top: 2px solid var(--black);
+  }
+  .directories h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:1.1rem;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+  .directories p{ color:var(--ink-soft); font-size:0.9rem; margin:0 0 1rem; max-width:60ch; }
+  .directories ul{ list-style:none; margin:0; padding:0; columns: 2; column-gap:2rem; }
+  .directories li{ margin-bottom:0.5rem; font-size:0.9rem; break-inside: avoid; }
+  @media (max-width: 560px){ .directories ul{ columns: 1; } }
+
+  footer{
+    background: var(--black);
+    margin-top: 3rem;
+    padding: 3rem 1.5rem 3.5rem;
+  }
+  .footer__inner{ max-width:800px; margin: 0 auto; }
+  .footer__inner img{ height:1.6rem; width:auto; margin-bottom:1.1rem; display:block; }
+  .footer__inner p{ color: rgba(255,255,255,0.62); font-size:0.85rem; max-width: 62ch; margin:0; }
+  .footer__inner a{ color:#fff; }
+  .footer__inner a:hover{ color:var(--orange); }
+</style>
+</head>
+<body>
+
+<header class="siteheader">
+  <a class="wordmark" href="index.html"><img src="data:image/png;base64,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" alt="SEAT6"></a>
+  <div class="siteheader__nav">
+    <a href="index.html">Drill log</a>
+  </div>
+</header>
+
+<div class="pagehead">
+  <h1>Sources</h1>
+  <p>Every link that actually contributed content to the drill log, organized by region. Club sites, association handbooks, and a couple of coaches worth following directly.</p>
+</div>
+
+<main id="main"></main>
+
+<footer>
+  <div class="footer__inner">
+    <img src="data:image/png;base64,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" alt="SEAT6">
+    <p>Back to the <a href="index.html">practice drill log</a>.</p>
+  </div>
+</footer>
+
+<script>
+const SOURCES = [
+  {
+    "region": "Southern California (SCORA)",
+    "links": [
+      {
+        "title": "Kanaka Outrigger Canoe Club \u2014 Practice Expectations & Drills",
+        "url": "https://kanakaoutriggerclub.com/resources/kanaka-kupuna-mindset/",
+        "note": "richest single drill list: ladders, rabbit, silent-call, stay-together, close-quarters, turn drills, huli roles"
+      },
+      {
+        "title": "Hui Lokahi O Ke Kai (Long Beach) \u2014 Va'a Stroke Paddling Technique Guide",
+        "url": "https://www.huilokahi.org/paddling-guide.html",
+        "note": "stroke mechanics, changeover sequence, on-land side-switch progression, common mistakes table"
+      },
+      {
+        "title": "Hokuloa Outrigger Canoe Team \u2014 Resources & Workouts",
+        "url": "https://www.hokuloaoutrigger.com/resources-workouts.html",
+        "note": "interval ladders, pyramid intervals, heavy-blade/resistance work"
+      },
+      {
+        "title": "Hanohano \u2014 Handbook / Manuals / News & Training Videos",
+        "url": "http://www.hanohano.com/",
+        "note": "member-gated"
+      },
+      {
+        "title": "Ka Nai'a Outrigger \u2014 Safety Tips",
+        "url": "http://www.kanaia.com/",
+        "note": ""
+      },
+      {
+        "title": "Lake Havasu City OCC \u2014 Educational Vids",
+        "url": "http://www.lhcocc.com/",
+        "note": "stroke technique & huli recovery videos"
+      },
+      {
+        "title": "Lanakila \u2014 Resources / Coaches Corner",
+        "url": "http://www.lanakila.com/",
+        "note": "nav items exist, not deep-verified"
+      }
+    ]
+  },
+  {
+    "region": "Northern California (NCOCA)",
+    "links": [
+      {
+        "title": "Outrigger Santa Cruz \u2014 Paddling Technique References",
+        "url": "https://outriggersantacruz.org/resources/paddling-technique/",
+        "note": "technique, steering resources, safety manual; single richest club site found"
+      },
+      {
+        "title": "Outrigger Santa Cruz \u2014 Introduction to Hawaiian Outrigger Canoeing (PDF)",
+        "url": "https://outriggersantacruz.org/wp-content/uploads/2015/04/IntroHawaiianOutrigger.pdf",
+        "note": ""
+      },
+      {
+        "title": "Benicia Outrigger \u2014 Technique Blog",
+        "url": "https://beniciaocc.wordpress.com/tag/paddling-drills/",
+        "note": ""
+      },
+      {
+        "title": "Benicia Outrigger \u2014 2026 Paddling Technique Handout (PDF)",
+        "url": "https://beniciaocc.wordpress.com/wp-content/uploads/2026/08/134384246-2026-paddling-technique-handout.pdf",
+        "note": ""
+      },
+      {
+        "title": "Capital Outrigger \u2014 Intro to Outrigger Paddling Manual (PDF)",
+        "url": "https://www.capitaloutrigger.com/s/Outrigger-Manual.pdf",
+        "note": ""
+      },
+      {
+        "title": "Capital Outrigger \u2014 Resistive Training Seminar (PDF)",
+        "url": "https://www.capitaloutrigger.com/s/Resistive-Training-Seminar-COCC_rev.pdf",
+        "note": ""
+      },
+      {
+        "title": "He'e Nalu O Marin \u2014 Knowledge Base",
+        "url": "https://www.heenaluocc.org/knowledge-base/",
+        "note": "club stroke, seat roles, huli recovery, float plan"
+      },
+      {
+        "title": "He'e Nalu O Marin \u2014 Outrigger Canoe Seat Roles",
+        "url": "https://www.heenaluocc.org/knowledge-base/technique/outrigger-canoe-seat-roles/",
+        "note": ""
+      },
+      {
+        "title": "Ohana Wa'a \u2014 How to Begin Paddling (PDF)",
+        "url": "https://www.ohanawaa.org/_files/ugd/bde71a_7fd1c94268cd42568c0832d6cab18d80.pdf",
+        "note": ""
+      },
+      {
+        "title": "Ohana Wa'a \u2014 Basics of Outrigger Canoe Racing (PDF)",
+        "url": "https://www.ohanawaa.org/_files/ugd/bde71a_5e5badb0fdaa4adda29f124b68085e31.pdf",
+        "note": ""
+      },
+      {
+        "title": "Lokahi (Petaluma) \u2014 Resources",
+        "url": "http://www.lokahiocc.org/resources.html",
+        "note": "huli recovery & rigging videos"
+      },
+      {
+        "title": "O Kalani \u2014 Safety Page",
+        "url": "https://okalanioutrigger.org/safety/",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "region": "Pacific Northwest (PNWORCA)",
+    "links": [
+      {
+        "title": "PNWORCA \u2014 Outrigger Paddling",
+        "url": "https://pnworca.org/outrigger-basics/outrigger-paddling/",
+        "note": "stroke mechanics, D-stroke, stroke rate, timing"
+      },
+      {
+        "title": "PNWORCA \u2014 Paddler Roles",
+        "url": "https://pnworca.org/outrigger-basics/paddler-roles/",
+        "note": ""
+      },
+      {
+        "title": "PNWORCA \u2014 Huli Recovery Basics",
+        "url": "https://pnworca.org/outrigger-basics/huli-recovery-basics/",
+        "note": ""
+      },
+      {
+        "title": "Hood River Outrigger Canoe Club",
+        "url": "https://www.hoodriveroutrigger.com/page-18211",
+        "note": "Surfing a 6-Man Outrigger, Huli Basics, Steers Training, Seat Roles, Guardian Duties, Mentoring guide"
+      },
+      {
+        "title": "Hood River OCC \u2014 Surfing a 6-Man Outrigger",
+        "url": "https://www.hoodriveroutrigger.com/Surfing-a-6-Man-Outrigger",
+        "note": ""
+      },
+      {
+        "title": "Kai Ikaika Paddling Club \u2014 Outrigger Paddling Technique",
+        "url": "https://www.kaiikaika.com/outrigger-basics/outrigger-paddling-technique/",
+        "note": ""
+      },
+      {
+        "title": "Mountain Home Outrigger Canoe Club \u2014 Coaching & Training",
+        "url": "http://www.maunahale.org/membership/coaching-training",
+        "note": ""
+      },
+      {
+        "title": "Mountain Home OCC \u2014 General Practice Info",
+        "url": "http://www.maunahale.org/general-practice-info",
+        "note": ""
+      },
+      {
+        "title": "Mountain Home OCC \u2014 Safety Guidelines",
+        "url": "http://www.maunahale.org/safety",
+        "note": ""
+      },
+      {
+        "title": "Bellingham Bay Outrigger Paddlers \u2014 Small Boat Resources",
+        "url": "https://www.bbop.us/smallboatresources",
+        "note": ""
+      },
+      {
+        "title": "Columbia River Outrigger Canoe Club \u2014 Coaches",
+        "url": "https://croccpaddle.com/about/coaches/",
+        "note": ""
+      },
+      {
+        "title": "Columbia River OCC \u2014 What to Expect",
+        "url": "https://croccpaddle.com/location-and-practices/what-to-expect/",
+        "note": ""
+      },
+      {
+        "title": "Wasabi Paddling Club \u2014 Outrigger Program (GRIT Coaching)",
+        "url": "https://wasabiusa.org/outrigger/",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "region": "Hawaii (OHCRA + standalone)",
+    "links": [
+      {
+        "title": "Kailua Canoe Club \u2014 Webinars",
+        "url": "https://kailuacanoeclub.com/about#Webinars",
+        "note": "2 embedded technique videos"
+      },
+      {
+        "title": "Keauhou Canoe Club \u2014 Technique",
+        "url": "https://www.keauhoucanoeclub.com/technique.aspx",
+        "note": ""
+      },
+      {
+        "title": "Lokahi Canoe Club Handbook 2025 (PDF)",
+        "url": "https://lokahicanoeclub.org/content/files/2025/02/Lokahi-Handbook-2025-e2a35b627f88cb6b.pdf",
+        "note": ""
+      },
+      {
+        "title": "KIALOA \u2014 The Demystification of Surfing OC-1",
+        "url": "https://kialoa.com/pages/the-demystification-of-surfing-oc-1",
+        "note": "wave-catching / bump concept"
+      }
+    ]
+  },
+  {
+    "region": "East Coast (ECORA)",
+    "links": [
+      {
+        "title": "Boston Outrigger Racing Association \u2014 Intro to Hawaiian Outrigger Canoeing (PDF)",
+        "url": "https://bostonoutrigger.com/wp-content/uploads/2024/04/IntroHawaiianOutrigger.pdf",
+        "note": ""
+      },
+      {
+        "title": "Philadelphia Flying Phoenix \u2014 Canoe Racing",
+        "url": "http://www.philadelphiaflyingphoenix.org/canoe-racing",
+        "note": "huli drills, OC6/marathon basics"
+      }
+    ]
+  },
+  {
+    "region": "Canada (CORA)",
+    "links": [
+      {
+        "title": "CORA \u2014 Outrigger Resources Hub",
+        "url": "https://www.canadianoutrigger.ca/canadian-outrigger-racing-association/resources/outrigger-resources/",
+        "note": "central hub for everything below"
+      },
+      {
+        "title": "CORA \u2014 Web Guide to Outrigger Canoeing (PDF)",
+        "url": "https://www.canadianoutrigger.ca/wp-content/uploads/2019/05/WebGuidetoOutriggerCanoeing.pdf",
+        "note": ""
+      },
+      {
+        "title": "CORA \u2014 OC6 Steering Basics Handout (PDF)",
+        "url": "https://www.canadianoutrigger.ca/wp-content/uploads/2024/02/CORA-Town-Hall-OC6-Steering-Basics-Handout-Feb-25-2024-1396-1137-8696-v.3.pdf",
+        "note": ""
+      },
+      {
+        "title": "CORA \u2014 Kanu Culture: The Paddling Stroke (PDF)",
+        "url": "https://www.canadianoutrigger.ca/wp-content/uploads/2019/05/the-paddling-stroke.pdf",
+        "note": ""
+      },
+      {
+        "title": "CORA \u2014 Junior Safety Guide (PDF)",
+        "url": "https://www.canadianoutrigger.ca/wp-content/uploads/2019/05/juniorsafety.pdf",
+        "note": ""
+      },
+      {
+        "title": "CORA \u2014 Huli Recovery",
+        "url": "https://www.canadianoutrigger.ca/races/safety/huli-recovery/",
+        "note": ""
+      },
+      {
+        "title": "CORA \u2014 Safety Tips",
+        "url": "https://www.canadianoutrigger.ca/races/safety/safety-tips/",
+        "note": ""
+      },
+      {
+        "title": "Kanu Culture \u2014 Calling the Huts",
+        "url": "https://kanuculture.com/brokenpaddle/calling-the-huts",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "region": "Australia",
+    "links": [
+      {
+        "title": "Gold Coast Outrigger Canoe Club \u2014 Paddling Technique",
+        "url": "https://goldcoastoutriggers.com/membership/coaching-skills-and-training/paddling-technique/",
+        "note": ""
+      },
+      {
+        "title": "Newcastle Outrigger Canoe Club \u2014 Huli Drill Process",
+        "url": "https://www.newcastleoutrigger.com.au/safety/hulli-drill/",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "region": "Individual Coaches (video / social content)",
+    "note": "Instagram and YouTube pages aren't fetchable as text, so these are pointers to browse rather than extracted content \u2014 both are genuinely worth mining further.",
+    "groups": [
+      {
+        "name": "Tek Li",
+        "bio": "20 years dragon boat/outrigger coaching experience, weekly \u201cTek Talks\u201d on technique.",
+        "links": [
+          {
+            "title": "Instagram \u2014 @tekniquefirst",
+            "url": "https://www.instagram.com/tekniquefirst/",
+            "note": ""
+          },
+          {
+            "title": "YouTube \u2014 Tek Li Coaching",
+            "url": "https://www.youtube.com/@TekLiCoaching",
+            "note": ""
+          },
+          {
+            "title": "teklicoaching.com",
+            "url": "https://teklicoaching.com/",
+            "note": ""
+          },
+          {
+            "title": "The Perfect Exit \u2014 Advanced Paddling Technique (Tek Talk 25.2.4)",
+            "url": "https://www.youtube.com/watch?v=ZxuQsRX8QzE",
+            "note": ""
+          },
+          {
+            "title": "Coaching Feedback Made Simple \u2014 5:1 Positive Feedback Rule (Tek Talk 25.1.5)",
+            "url": "https://www.youtube.com/watch?v=gUKmrNQo83I",
+            "note": ""
+          },
+          {
+            "title": "Paddle Skool by Tek",
+            "url": "https://www.skool.com/tek-li-coaching-6222",
+            "note": "paid community, course library"
+          }
+        ]
+      },
+      {
+        "name": "Danny Ching",
+        "bio": "Outrigger/SUP world champion (Molokai Solo World Champion 2010, 2013, 2023), coaching since 1998, started on Lanakila's outrigger team.",
+        "links": [
+          {
+            "title": "Johnny Puakea & Danny Ching Paddling Clinic \u2014 Part 1",
+            "url": "https://www.youtube.com/watch?v=Ne1PFWSey3w",
+            "note": "multi-part series, 2010"
+          },
+          {
+            "title": "Blast from the Past: Outrigger Canoe Technique with Danny Ching and Johnny Puakea",
+            "url": "https://distressedmullet.com/2015/09/29/blast-from-the-past-outrigger-canoe-technique-with-danny-ching-and-johnny-puakea/",
+            "note": "Paddle Monster writeup"
+          },
+          {
+            "title": "John Puakea Teaches Canoe Paddling Technique: The Catch",
+            "url": "https://www.youtube.com/watch?v=691Mpc5ZSqQ",
+            "note": ""
+          },
+          {
+            "title": "John Puakea Paddle Stroke Analysis and Coaching \u2014 Part 1",
+            "url": "https://www.youtube.com/watch?v=arAJhcoQ_BY",
+            "note": ""
+          },
+          {
+            "title": "Mastering Stand Up Paddle Technique with Danny Ching",
+            "url": "https://www.youtube.com/watch?v=uxrpCODi1TM",
+            "note": "instructional video"
+          },
+          {
+            "title": "Danny Ching outrigger/SUP clinic writeup",
+            "url": "https://westcoastpaddlesports.com/blogs/news/danny-ching-hosting-a-sup-and-outrigger-clinic-in-san-diego",
+            "note": "West Coast Paddle Sports \u2014 clinic format: land discussion + water demonstration/drills, individual stroke evaluation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "region": "Other / General Huli References",
+    "links": [
+      {
+        "title": "Fort Langley Canoe Club \u2014 Huli",
+        "url": "https://www.fortlangleycanoeclub.ca/huli/",
+        "note": ""
+      },
+      {
+        "title": "Royal Hong Kong Yacht Club \u2014 Huli Drill",
+        "url": "https://www.rhkyc.org.hk/rowingsection/outrigger-canoeing/safety-info/hulidrill2021",
+        "note": ""
+      }
+    ]
+  }
+];
+const DIRECTORIES = [
+  {
+    "title": "SCORA Clubs",
+    "url": "https://www.scora.org/clubs/"
+  },
+  {
+    "title": "NCOCA Member Organizations",
+    "url": "https://ncoca.com/ncocaorgs"
+  },
+  {
+    "title": "PNWORCA Member Clubs",
+    "url": "https://pnworca.org/directory"
+  },
+  {
+    "title": "OHCRA Member Clubs",
+    "url": "https://ohcra.com/clubs.aspx"
+  },
+  {
+    "title": "ECORA Links",
+    "url": "http://www.eastcoastoutrigger.com/links/"
+  },
+  {
+    "title": "Cali Paddler \u2014 Paddler Groups & Teams Directory",
+    "url": "https://www.calipaddler.com/pages/paddler-groups-teams-directory"
+  }
+];
+
+function renderLinkList(links){
+  return `<ul class="linklist">${links.map(l => `
+    <li>
+      <a href="${l.url}" target="_blank" rel="noopener">${l.title}</a>
+      ${l.note ? `<div class="note">${l.note}</div>` : ''}
+    </li>`).join('')}</ul>`;
+}
+
+function renderRegion(region, index){
+  const groups = region.groups ? region.groups.map(g => `
+    <div class="coachgroup">
+      <h3>${g.name}</h3>
+      <p class="bio">${g.bio}</p>
+      ${renderLinkList(g.links)}
+    </div>
+  `).join('') : '';
+
+  return `
+  <section class="region">
+    <div class="region__head">
+      <span class="region__tab">${index + 1}</span>
+      <h2>${region.region}</h2>
+    </div>
+    ${region.note ? `<p class="region__note">${region.note}</p>` : ''}
+    ${region.links ? renderLinkList(region.links) : ''}
+    ${groups}
+  </section>`;
+}
+
+function renderDirectories(){
+  return `
+  <section class="directories">
+    <h2>Directory pages</h2>
+    <p>Used to find the clubs above — not technique sources themselves.</p>
+    <ul>${DIRECTORIES.map(d => `<li><a href="${d.url}" target="_blank" rel="noopener">${d.title}</a></li>`).join('')}</ul>
+  </section>`;
+}
+
+document.getElementById('main').innerHTML = SOURCES.map(renderRegion).join('') + renderDirectories();
+</script>
+</body>
+</html>
