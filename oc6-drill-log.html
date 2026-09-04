@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OC6 Drill Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===================== DESIGN TOKENS ===================== */
+  :root{
+    --sand: #F7F5EE;
+    --sand-deep: #ECE7D8;
+    --ink: #0E2B2E;
+    --ink-soft: #4C6360;
+    --teal: #0F6E64;
+    --teal-deep: #0B4F49;
+    --sea: #1C4E6B;
+    --rust: #A6472B;
+    --line: #D8D2C0;
+    --paper: #FFFFFF;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      repeating-linear-gradient(
+        180deg,
+        transparent 0px, transparent 38px,
+        rgba(15,110,100,0.05) 39px, transparent 40px
+      ),
+      var(--sand);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--teal-deep); }
+
+  /* ===================== HERO ===================== */
+  .hero{
+    padding: 6rem 1.5rem 4.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero__bg{
+    position:absolute;
+    top:0; left:0; right:0;
+    height: 100%;
+    background: linear-gradient(180deg, #E4EEEE 0%, rgba(228,238,238,0) 100%);
+    z-index:-1;
+  }
+  .hero__kicker{
+    font-family:var(--sans);
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--teal);
+    margin:0 0 1.1rem;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.6rem, 6vw, 4.2rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin:0 0 1.3rem;
+    max-width: 13ch;
+    color:var(--ink);
+  }
+  .hero p{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin: 0 0 2.2rem;
+  }
+  .hero__stats{
+    display:flex;
+    gap:2.6rem;
+    flex-wrap:wrap;
+    padding-top: 1.8rem;
+    border-top: 1px solid var(--line);
+  }
+  .hero__stat b{
+    display:block;
+    font-family:var(--serif);
+    font-size:1.9rem;
+    font-weight:500;
+    color:var(--ink);
+  }
+  .hero__stat span{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+  .wave-rule{ display:block; width:100%; height:22px; margin: 0 0 -1px; }
+
+  /* ===================== CATEGORY NAV ===================== */
+  .catnav{
+    position: sticky;
+    top:0;
+    z-index: 20;
+    background: rgba(247,245,238,0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    padding: 0.65rem 1.5rem;
+  }
+  .catnav__inner{
+    max-width: 960px;
+    margin:0 auto;
+    display:flex;
+    gap: 0.3rem;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .catnav__inner::-webkit-scrollbar{ display:none; }
+  .catnav a{
+    flex: 0 0 auto;
+    display:flex;
+    align-items:center;
+    gap:0.45rem;
+    text-decoration:none;
+    color:var(--ink-soft);
+    font-size:0.86rem;
+    font-weight:500;
+    padding: 0.35rem 0.65rem 0.35rem 0.4rem;
+    border-radius: 5px;
+    white-space:nowrap;
+  }
+  .catnav a:hover{ background: var(--sand-deep); color:var(--ink); }
+  .catnav a i{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:1.4rem;
+    height:1.4rem;
+    border-radius:4px;
+    background: linear-gradient(160deg, var(--teal) 0%, var(--sea) 100%);
+    color:#fff;
+    font-style:normal;
+    font-family:var(--serif);
+    font-size:0.78rem;
+    font-weight:600;
+    flex-shrink:0;
+  }
+
+  /* ===================== MAIN LAYOUT ===================== */
+  main{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 6rem;
+  }
+  .category{
+    padding-top: 4.2rem;
+    scroll-margin-top: 4.5rem;
+  }
+  .category__head{
+    display:flex;
+    align-items:center;
+    gap:0.9rem;
+    margin-bottom: 0.7rem;
+  }
+  .category__tab{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:2.5rem;
+    height:2.5rem;
+    border-radius:6px;
+    background: linear-gradient(160deg, var(--teal) 0%, var(--sea) 100%);
+    color:#fff;
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.15rem;
+    flex-shrink:0;
+  }
+  .category__head h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:1.65rem;
+    margin:0;
+    line-height:1.1;
+    color: var(--ink);
+  }
+  .category__range{
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    margin: 0 0 1.6rem 3.4rem;
+  }
+  .category__note{
+    color:var(--ink-soft);
+    font-size:0.98rem;
+    margin: 0 0 1.6rem;
+    max-width: 62ch;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* ===================== DRILL ENTRY ===================== */
+  details.drill{
+    border-bottom: 1px solid var(--line);
+  }
+  details.drill:first-of-type{ border-top: 1px solid var(--line); }
+  details.drill > summary{
+    list-style:none;
+    cursor:pointer;
+    padding: 1.05rem 0.1rem;
+    display:flex;
+    align-items:baseline;
+    gap:0.7rem;
+    font-family:var(--serif);
+    font-size:1.14rem;
+    font-weight:500;
+    transition: color 0.15s ease;
+  }
+  details.drill > summary:hover{ color: var(--teal-deep); }
+  details.drill > summary::-webkit-details-marker{ display:none; }
+  details.drill > summary .drill-id{
+    color:var(--teal-deep);
+    font-size:0.85rem;
+    font-family:var(--sans);
+    font-weight:700;
+    min-width: 2.6em;
+  }
+  details.drill > summary::after{
+    content:'+';
+    margin-left:auto;
+    font-family:var(--sans);
+    font-weight:600;
+    color:var(--ink-soft);
+    font-size:1.2rem;
+  }
+  details.drill[open] > summary::after{ content:'–'; }
+  details.drill[open] > summary{ padding-bottom:0.3rem; }
+
+  .drill__body{ padding: 0 0.1rem 1.6rem; }
+  .drill__objective{
+    font-size:1rem;
+    color:var(--ink-soft);
+    margin: 0 0 1.1rem;
+    max-width:62ch;
+  }
+  .drill__grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem 2rem;
+    margin-bottom: 1.1rem;
+  }
+  @media (max-width: 620px){ .drill__grid{ grid-template-columns: 1fr; } }
+  .drill__label{
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.03em;
+    color:var(--teal-deep);
+    margin: 0 0 0.4rem;
+  }
+  .drill__block p, .drill__block li{ margin:0 0 0.4rem; font-size:0.94rem; }
+  .drill__block ol{ margin:0; padding-left:1.15rem; }
+  .drill__block ol li{ margin-bottom:0.5rem; }
+
+  .callout{
+    background: var(--paper);
+    border-left: 3px solid var(--teal);
+    padding: 0.7rem 0.9rem;
+    font-size:0.92rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+  .callout--warn{ border-left-color: var(--rust); }
+  .callout__label{
+    display:block;
+    font-style:normal;
+    font-weight:700;
+    font-size:0.7rem;
+    letter-spacing:0.03em;
+    color: var(--teal-deep);
+    margin-bottom:0.25rem;
+  }
+  .callout--warn .callout__label{ color: var(--rust); }
+
+  footer{
+    max-width:920px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+    color: var(--ink-soft);
+    font-size:0.85rem;
+    border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero__bg"></div>
+  <p class="hero__kicker">AN OC6 COACHING REFERENCE</p>
+  <h1>The OC6 practice drill log</h1>
+  <p>Every drill worth running with an outrigger crew, in one place &mdash; timing, technique, power, changeovers, race simulation, steering, and the huli drills every crew needs to know cold.</p>
+  <div class="hero__stats">
+    <div class="hero__stat"><b>39</b><span>drills</span></div>
+    <div class="hero__stat"><b>9</b><span>categories</span></div>
+    <div class="hero__stat"><b>A&ndash;I</b><span>tap any drill to open it</span></div>
+  </div>
+</div>
+
+<svg class="wave-rule" viewBox="0 0 960 22" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 11 C 80 -3, 160 25, 240 11 C 320 -3, 400 25, 480 11 C 560 -3, 640 25, 720 11 C 800 -3, 880 25, 960 11 L 960 22 L 0 22 Z" fill="#0F6E64" opacity="0.08"/>
+</svg>
+
+<nav class="catnav">
+  <div class="catnav__inner" id="catnav"></div>
+</nav>
+
+<main id="main"></main>
+
+<footer>
+  A field reference for OC6 coaches and crews. Content lives in the data array at the bottom of this file &mdash; edit drill text there, layout shouldn't need to change.
+</footer>
+
+<script>
+/* =========================================================================
+   CONTENT
+   Everything a coach reads on this page lives in DATA below. To edit a
+   drill: find it by id (e.g. "A1") and change the text in that object.
+   To add a drill: copy an existing drill object into the right category's
+   "drills" array and give it a new id. Nothing else on the page needs to
+   change — the layout renders automatically from this data.
+   ========================================================================= */
+const DATA = [
+  {
+    letter: "A",
+    name: "Timing & Synchronization",
+    note: "The foundation everything else is built on. If a crew can't hold time together, no other drill in this list will click.",
+    drills: [
+      {
+        id: "A1", title: "Paddles Up",
+        objective: "Sharpen crew unison — every paddle at the same height, entering the water on the same instant, on command.",
+        setup: "Flat or moderate water, any hull. No special equipment. Works as a stand-alone drill or a reset mid-practice when the crew starts drifting out of time.",
+        steps: [
+          "On the steersperson's or coach's call (\"Paddles up!\"), every paddler lifts their blade a few inches off the water and holds it there, blade angled and ready to dig — not resting on the gunnel, not trailing in the water.",
+          "Hold for a 2–3 count so everyone can visually check they're at the same height and angle as their neighbors (peek across, don't just trust it).",
+          "On \"Paddles down!\" or a count (\"...and dig!\"), the whole crew digs in together on the same stroke.",
+          "Immediately paddle 5–10 full strokes at race cadence, staying locked in together, then repeat.",
+          "Interval format: run \"up 1 minute / paddle 1 minute\" for 4–6 rounds, or \"up 2 / paddle 2\" for a longer version once the crew has the basic version down."
+        ],
+        cues: "\"Same height, same angle, same instant.\" \"Don't rest the paddle — hold it ready.\" \"Everyone digs on my call, not a beat late.\"",
+        progressions: "Once basic timing is solid, call it randomly (not on a predictable cadence) so the crew has to react rather than anticipate. Can also be run as a race-restart simulator: paddles up, hold, then explosive dig + 10 strokes at max rate to simulate a race start off a stopped position.",
+        errors: "Paddles at different heights/angles (usually a seat-2/seat-4 mismatch with the stroker); a ragged first dig where 1–2 people are a half-beat late; paddlers resting the blade on the water instead of holding it clear."
+      },
+      {
+        id: "A2", title: "In Together, Out Together",
+        objective: "The foundational same-side synchronization drill — every blade enters and exits the water at the exact same instant, all session, every session.",
+        setup: "Any water conditions, any hull. This isn't really a stand-alone \"drill\" so much as a standard you run under everything else — call it out explicitly at least once per practice.",
+        steps: [
+          "Before pushing off, remind the crew: \"in together, out together\" is the standard for the day.",
+          "As the crew paddles, the steersperson or coach watches the paddle blades from behind — they should form a single clean line entering and exiting, no ripple effect down the boat.",
+          "When a paddler is out of time, coach calls their seat number quietly and has them focus on matching the stroker's entry point exactly, not their own rhythm.",
+          "Use as a \"reset\" drill mid-practice: stop the boat, paddle 10 strokes at half rate focusing purely on synchronized entry/exit, then build back to full rate."
+        ],
+        cues: "\"Match the stroker's blade, not your own count.\" \"Watch for splash, not sound.\" \"Entry before power.\"",
+        progressions: "Combine with A4 (eyes-closed) once the crew is reliably in time visually — the next test is holding time without watching.",
+        errors: "One or two seats consistently entering slightly early or late (usually traceable to a seat not watching seat 1 closely enough); paddlers matching cadence but not exit point, which still looks/feels ragged.",
+      },
+      {
+        id: "A3", title: "Pause-at-the-Back Drill",
+        objective: "Teach the crew to feel and honor the canoe's natural glide by pausing briefly at the back of the stroke (never the front), which avoids \"boat dive\" and unweighting the glide.",
+        setup: "Calm/flat water works best for learning this — save choppier water for once it's second nature.",
+        steps: [
+          "Paddle normally for several strokes to get the boat moving.",
+          "On a call (\"pause\"), every paddler finishes their stroke fully (blade at the rear, near the hip) and holds a brief pause there — blade still in or just exiting the water — before starting the return.",
+          "Everyone should feel the canoe continue to glide forward during the pause, rather than losing momentum.",
+          "Resume normal cadence after 1–2 paused strokes, then repeat several times per pass."
+        ],
+        cues: "\"Pause at the back, never the front.\" \"Feel the glide, don't fight it.\" \"Let the boat run under you.\"",
+        progressions: "Once the pause is comfortable at low rate, try it at moderate stroke rate — it gets much harder to hold the pause cleanly as tempo increases, which is the point.",
+        errors: "Pausing at the front of the stroke instead of the back (this is the mistake the drill exists to correct — watch for it especially with newer paddlers); rushing through the pause instead of actually feeling the glide."
+      },
+      {
+        id: "A4", title: "Eyes-Closed Timing Drill",
+        objective: "Advanced synchronization test — keep perfect time using only the boat's rhythm and the sound of other blades, no visual cues.",
+        setup: "Flat, calm, obstacle-free water only — this is a trust/awareness drill, not for chop or traffic. Best used as a confidence-building cooldown once a crew already paddles well together.",
+        steps: [
+          "Crew paddles normally for a stretch to establish a clean, steady rhythm.",
+          "On the coach's call, all paddlers close their eyes and continue paddling, keeping time purely by feel and sound (splash pattern, the stroker's cadence, the shared rhythm of the hull).",
+          "Hold for 10–20 strokes, then call \"eyes open\" and check how well timing held up.",
+          "Repeat 2–3 times, gradually extending the eyes-closed stretch as the crew improves."
+        ],
+        cues: "\"Listen for the splash, not the count.\" \"Feel where seat one is.\" \"Trust your crew.\"",
+        progressions: "Once solid at steady rate, try a slow rate build during the eyes-closed stretch (increase cadence gradually while still eyes-closed) — much harder, and a good test before race season.",
+        errors: "Crew drifting off-tempo gradually rather than all at once (hard to self-correct without opening eyes — this is exactly what the drill surfaces); paddlers peeking, which defeats the purpose."
+      },
+      {
+        id: "A5", title: "Chalk Talks",
+        objective: "Use brief on-land walkthroughs to correct a specific technical fault the whole crew shares, without burning water time on explanation.",
+        setup: "Dry land, before or after a water session. A paddle each, or a shared demo paddle, and enough space to demonstrate stroke or steering motions.",
+        steps: [
+          "Coach identifies one specific issue from the prior session (e.g., collapsed wrists on the return, rushed changes, poor catch angle).",
+          "Before or after paddling, gather the crew on the dock/beach and demonstrate the correct motion slowly, narrating each phase.",
+          "Have 2–3 paddlers demonstrate it themselves while the rest of the crew watches and gives feedback.",
+          "Send the crew onto the water with one explicit thing to focus on for that session, tying directly into I2 (session-intention drill)."
+        ],
+        cues: "Keep it to one fix per talk — don't stack corrections. \"One thing to focus on today.\"",
+        progressions: "Pair with video/skiff footage (B11) when available — nothing sharpens a chalk talk like showing the crew their own stroke.",
+        errors: "Trying to cover too many corrections in one talk (the crew will retain none of them); talking without a physical demonstration, which is much less effective for a physical skill."
+      }
+    ]
+  },
+  {
+    letter: "B",
+    name: "Stroke Technique Fundamentals",
+    note: "The mechanics of a single clean stroke — catch, pull, push, return — broken into isolated pieces a paddler can actually fix one at a time.",
+    drills: [
+      {
+        id: "B6", title: "The Va'a Stroke Phase Drill",
+        objective: "Teach the three-phase stroke (Catch → Pull → Push) as distinct, progressive efforts rather than one uniform pull, so paddlers stop \"spending their power at the front.\"",
+        setup: "Flat water, low boat traffic — this is a technical drill, not a fitness one. Works for the full crew or in a smaller/solo boat for closer coaching.",
+        steps: [
+          "Paddle at a relaxed, low rate to start.",
+          "Coach calls out each phase by name as the crew paddles, cueing intensity: \"Catch — connect, no power... Pull — build it... Push — finish strong!\"",
+          "Run several strokes with exaggerated phase separation (almost a stop-start feel) so paddlers can distinguish the three efforts.",
+          "Gradually blend the phases back into one continuous stroke while keeping the 60/80/100% effort curve intact.",
+          "Finish with a few pieces at normal rate, holding the phase discipline without the verbal cueing."
+        ],
+        cues: "\"60 to connect, 80 to build, 100 to finish.\" \"Don't spend it all at the front.\" \"Weak push = dead spot — finish strong.\"",
+        progressions: "Once the phase feel is there at low rate, repeat the same drill at race cadence — much harder to keep the push strong when strokes are coming fast.",
+        errors: "Front-loading power (attacking the catch instead of connecting cleanly); a \"dead\" or mushy push with no real finish; treating the three phases as equal effort instead of progressive.",
+      },
+      {
+        id: "B7", title: "BBB — Blade Before Butt",
+        objective: "Fix the common fault of dumping body weight straight down into the seat instead of engaging the blade and feet first to build tension through the kinetic chain.",
+        setup: "Any water. Works well paired with B6 since it's really about sequencing within the catch.",
+        steps: [
+          "Paddle at a low, controlled rate.",
+          "Coach cues \"Blade before butt\" right before each catch for several strokes — the paddler should feel the blade and feet engage a beat before the seat/hips settle into the stroke.",
+          "Have paddlers self-check: does the pressure build from the blade backward through the body, or does it feel like they're sitting down onto the stroke?",
+          "Build back to normal rate holding the same sequencing."
+        ],
+        cues: "\"Blade and feet first.\" \"Don't dump into the seat.\" \"Feel the chain — feet, legs, core, then finish.\"",
+        progressions: "Combine with B10 (pull-not-push mental model) as a single technical theme for a session — they reinforce each other.",
+        errors: "Collapsing into the seat at the catch instead of engaging the lower body first; losing the sequencing entirely at higher stroke rates (a sign the crew needs more reps at lower rate before adding speed)."
+      },
+      {
+        id: "B8", title: "Return / Relax-Wrist Drill",
+        objective: "Smooth out rushed, choppy paddle returns by teaching paddlers to relax the wrists at the finish and swing the paddle back in a controlled half-circle close to the water.",
+        setup: "Flat water. Good as a standalone technical focus or bundled into a warm-up.",
+        steps: [
+          "Paddle at low rate.",
+          "After each finish, cue paddlers to consciously relax the wrists (\"like playing piano\") before starting the return.",
+          "The paddle should travel back in a wide, low half-circle, staying close to the water rather than lifting high or snapping back.",
+          "Repeat for a full set of strokes, then check in: does the return feel controlled and unhurried, or rushed?"
+        ],
+        cues: "\"Relax the wrists at the finish.\" \"Half-circle, close to the water.\" \"Don't rush the return — it sets up the next catch.\"",
+        progressions: "Once solid at low rate, hold the same relaxed return through a moderate-rate piece — the tendency to tense up and rush increases with speed.",
+        errors: "Stiff wrists carried straight through the finish into the return (choppy, tiring); lifting the paddle high out of the water on the return instead of staying low; rushing the return so the next catch is late or sloppy."
+      },
+      {
+        id: "B9", title: "Common-Mistakes Self-Check Drill",
+        objective: "Give each paddler a structured way to self-diagnose their own technical fault from a known checklist, rather than waiting for a coach to spot it.",
+        setup: "Best run as a land-based chalk talk (pairs with A5) followed immediately by a water session.",
+        steps: [
+          "Walk the crew through the mistakes table: too much front power, rushing the return, rocking the body, pulling only with arms, confusing paddle speed with canoe speed, attacking the water on re-entry, poor wrist control.",
+          "Have each paddler privately pick the one that sounds most like their own habit.",
+          "Paddle a set of strokes with each paddler silently focused only on their one chosen correction.",
+          "After the piece, ask a few paddlers to share what they noticed changing."
+        ],
+        cues: "\"Pick one — not all of them.\" \"Which one is you?\"",
+        progressions: "Rotate this drill periodically through the season so paddlers revisit and update their self-diagnosis as old habits get fixed and new ones surface.",
+        errors: "Paddlers picking a fault that isn't actually theirs (a coach should sanity-check a few picks); trying to fix multiple faults at once and fixing none."
+      },
+      {
+        id: "B10", title: "Pull-Not-Push Mental Model (Land Cue)",
+        objective: "Land-based teaching concept — the canoe is pulled forward to the paddle (like a mountaineer's ice axe anchor), not pushed — corrects the tendency to enter too far back and stroke too long.",
+        setup: "Dry land or dock, a paddle each, ~10 minutes before a technique-focused water session.",
+        steps: [
+          "Demonstrate reaching forward as far as possible without hinging at the waist.",
+          "Explain the \"anchor\" concept: the blade plants and holds, and the paddler pulls their body (and the canoe) up to that fixed point — not push the water backward.",
+          "Have each paddler practice the reach-and-anchor motion on land, checking that the stroke ends just before the lower hand passes the hip (not further back).",
+          "Move to water and have the crew apply the same mental model for a set of strokes, at low rate first."
+        ],
+        cues: "\"Pull yourself to the paddle.\" \"Reach without hinging.\" \"End before your hand passes your hip.\"",
+        progressions: "Combine with B7 (blade before butt) as a shared pre-practice concept for a \"clean catch and clean finish\" themed session.",
+        errors: "Hinging at the waist to reach further forward (defeats the purpose and strains the back); continuing the stroke well past the hip, which pushes rather than pulls."
+      },
+      {
+        id: "B11", title: "Video / Skiff Critique Sessions",
+        objective: "Use footage of the crew's own stroke to make technical feedback concrete instead of abstract.",
+        setup: "A chase/skiff boat with a phone or camera, or a shore-side vantage point with a zoom lens; works with just a phone if no second boat is available.",
+        steps: [
+          "Film the crew paddling a normal piece from behind/alongside, ideally from multiple angles across the session.",
+          "After practice (or at the next chalk talk), review the footage together — pause on individual strokes for the whole crew or specific seats.",
+          "Compare footage to the \"quick reference\" stroke sequence (setup → grip → catch → pull → push → release → return → reset) and identify 1–2 concrete things to work on.",
+          "Follow up with a technique-focused water session applying what was seen on video."
+        ],
+        cues: "Keep the review focused and short — a few clips, a few specific corrections, not an hour-long film session.",
+        progressions: "Build a simple library of footage over the season to show paddlers their own progress, not just their faults.",
+        errors: "Turning the review into a blame session instead of a coaching one; reviewing too much footage at once and losing focus."
+      }
+    ]
+  },
+  {
+    letter: "C",
+    name: "Catching Waves / Surfing the Bump",
+    note: "Reading and riding wakes and swell — the skill that separates a crew that's just paddling fast from one that's actually surfing the water.",
+    drills: [
+      {
+        id: "C12", title: "Build-Then-Burst Bump Drill",
+        objective: "Train the rate change needed to catch a wave/wake/bump — build for several strokes, then spike rate and get \"up front\" with the paddle to catch it, then settle into deep power strokes once caught.",
+        setup: "Start on flat water (harbor, lake, calm bay) before ever trying it in real surf. A boat wake works well as a low-stakes \"wave\" once the crew is ready to try it live.",
+        steps: [
+          "Paddle at a moderate base rate for 5–8 strokes to establish rhythm (\"build\").",
+          "On the coach's or steersperson's call, spike the stroke rate sharply for 3–5 strokes, driving the paddle in \"up front\" (early catch, quick tempo) to simulate accelerating onto a wave.",
+          "Once \"caught\" (call it after the burst), shift immediately into deep, strong strokes emphasizing the middle and back of the stroke — this is the power phase that keeps the canoe riding the bump instead of falling off it.",
+          "Hold the deep-stroke phase for several strokes, then ease back to base rate and repeat the cycle.",
+          "Once solid on flat water, repeat behind a boat wake, then in actual swell/surf conditions with a coach or experienced steersperson calling the timing."
+        ],
+        cues: "\"Build... burst... now settle in and drive!\" \"Up front on the burst, deep and strong once you're on it.\"",
+        progressions: "Flat water → boat wake → small swell → real surf conditions, in that order. Also drill it with varying \"build\" lengths (3 strokes vs. 8) since real waves won't always give a consistent runway.",
+        errors: "Bursting too early or too late relative to the call; staying at burst-tempo too long instead of transitioning to deep power strokes once on the wave (the single biggest gap between the drill and the real skill); losing synchronization during the rate change (ties back to A-section drills)."
+      },
+      {
+        id: "C13", title: "Opening-Scouting Drill",
+        objective: "Practice identifying a usable \"opening\" in a wave/wake ahead — dead ahead or off to the side — and calling the right response to reach it.",
+        setup: "Real wake or swell conditions needed for this one — it's a reading-the-water skill, not purely mechanical. Best run after C12 is solid.",
+        steps: [
+          "As the crew approaches a wave/wake, the steersperson (or a coach in the boat) calls out where they see an opening — straight ahead or to a side.",
+          "Crew responds with the appropriate effort: a handful of easy strokes and a light rudder adjustment for a nearby opening, or a full burst (C12) for one that requires real speed to reach.",
+          "Debrief immediately after each attempt — did the call match what was actually needed? Did the crew execute the right response?",
+          "Rotate steersperson calling duty among your more experienced stern paddlers so more than one person builds this read."
+        ],
+        cues: "\"Where's the opening — is it close or does it need speed?\" \"Match your effort to the gap.\"",
+        progressions: "Once the crew is reliable at reading obvious openings, work in trickier ones (openings that appear and close quickly, or require a strong rudder correction alongside the burst).",
+        errors: "Full-burst effort on an opening that only needed a light adjustment (wastes energy, risks overshooting); under-calling a strong effort need and missing the opening entirely."
+      },
+      {
+        id: "C14", title: "Energy-Balance Drill",
+        objective: "Teach the \"just enough, not too much\" feel of holding a wave or wake without dropping into the trough behind it — a feel-based drill, not a mechanical one.",
+        setup: "A steady boat wake is ideal for repeatable practice; real swell once the feel is established.",
+        steps: [
+          "Get the canoe positioned on the face of a wake/wave.",
+          "Paddle with deliberately minimal effort — just enough to stay on the face — and have the crew call out in real time if they feel the boat sliding backward off the wave (not enough) or launching ahead of it (too much).",
+          "Adjust effort up or down mid-ride based on that feedback, staying on the wave as long as possible.",
+          "Repeat multiple times per session — this is a feel that's built through reps, not instruction."
+        ],
+        cues: "\"Just enough to stay — don't overpower it.\" \"Feel for sliding back or launching over.\"",
+        progressions: "Once comfortable holding a single wake, try linking rides — catching a second wave right as the first fades, which is closer to real long-distance race conditions.",
+        errors: "Overpowering the ride and launching past the wave's power (wastes energy for no speed gain); giving up too early and letting the boat slide off the back when a little more effort would've held it."
+      }
+    ]
+  },
+  {
+    letter: "D",
+    name: "Power & Stroke-Rate Building",
+    note: "The fitness engine behind everything else — structured intervals for building both raw power and the ability to control stroke rate on command.",
+    drills: [
+      {
+        id: "D15", title: "Ladders",
+        objective: "Build both fitness and rate-control by paddling structured time-based \"rungs\" at increasing then decreasing duration.",
+        setup: "Open water with room to run continuous pieces; a stopwatch or coach with a phone timer.",
+        steps: [
+          "Warm up 10–15 minutes at an easy, technique-focused pace.",
+          "Run a ladder: e.g. 1-2-3-4-5-4-3-2-1 minutes at a solid effort (start around 70–80%), with 1 minute of easy recovery paddling between each rung.",
+          "Hold technique discipline even as fatigue builds on the longer rungs — this is as much a technique-under-fatigue drill as a fitness one.",
+          "Cool down 10 minutes easy.",
+          "As the crew's fitness improves over the season, extend the ladder (e.g., up to 6 minutes) or shorten recovery between rungs."
+        ],
+        cues: "\"Hold your form on the long rungs.\" \"Effort matches the rung, not the clock.\"",
+        progressions: "Start with short ladders (1-2-3-2-1) for a new or off-season crew; build toward longer ladders (1 through 6) as the season approaches racing.",
+        errors: "Technique breakdown on the longest rungs (address with a related B-section drill if this keeps happening); recovery paddling that's too easy to actually recover, or too hard to be real recovery.",
+      },
+      {
+        id: "D16", title: "Pyramid Interval",
+        objective: "A specific ladder variant — ascend and descend through a full range of efforts in one continuous set, finishing with a maximal push.",
+        setup: "Same as D15 — open water, timer.",
+        steps: [
+          "Warm up 10–15 minutes.",
+          "Run the pyramid: 1 through 6 minutes and back down (1-2-3-4-5-6-5-4-3-2 min) at roughly 80% (threshold/tempo) effort, with 1 minute of recovery paddling between each rung.",
+          "Finish with 1 minute at 100% (max) effort as the final push.",
+          "Cool down 10–15 minutes at an easy pace, technique-focused."
+        ],
+        cues: "\"Steady at 80 through the whole pyramid — save the max effort for the very end.\" \"Don't blow up early.\"",
+        progressions: "Once the full pyramid is manageable, shorten the recovery between rungs, or raise the baseline effort from 80% toward 85–90% as season fitness builds.",
+        errors: "Going out too hard on the early rungs and fading before the final max-effort minute; letting recovery paddling drift into a full stop instead of active recovery."
+      },
+      {
+        id: "D17", title: "Heavy-Blade / Resistance Work",
+        objective: "Build raw stroke strength by adding resistance — a larger/heavier blade, a bungee cord around the hull, or water loaded into the canoe — while paddling at a controlled, slow rate.",
+        setup: "A resistance method: heavier/larger blades if available, a bungee cord rigged around the hull for drag, or simply water let into the hull to ankle depth. Calm water, since this isn't a speed drill.",
+        steps: [
+          "Warm up normally at low rate for 10 minutes with standard blades.",
+          "Switch to the resistance method for the working set: e.g., 0.5 mile at heavy/slow rate (≤40 strokes/min) followed by 0.5 mile at a normal rate with standard gear, repeated 3–4 times, increasing speed slightly on the normal segments each round.",
+          "Alternatively: 10 heavy strokes each side, then stop the canoe completely — repeat 10 times — for a shorter, more explicit strength-focused version.",
+          "Cool down 10–15 minutes at an easy pace with good technique."
+        ],
+        cues: "\"Slow and strong, full range each stroke.\" \"Feel the resistance the whole way through, not just at the catch.\"",
+        progressions: "Increase resistance (bigger blade, more water, tighter bungee) as the crew's strength improves; extend the heavy-effort segments over the course of the season.",
+        errors: "Rushing the stroke rate under load instead of staying slow and controlled (defeats the strength-building purpose); losing full-range motion under fatigue (shortened, weak strokes instead of full-power ones)."
+      },
+      {
+        id: "D18", title: "Power-10 Burst Set",
+        objective: "A short, explosive burst set adapted from the ladder/pyramid principle — a natural fit as a race-simulation power piece, borrowed from rowing's \"Power 10.\"",
+        setup: "Open water, canoe stopped or nearly stopped at the start of each rep.",
+        steps: [
+          "Bring the canoe to a near-stop (or very slow paddle) to start each rep.",
+          "On the call, the crew drives 10 strokes at 100% effort from that standing start.",
+          "Ease off and paddle easy for 1–2 minutes to fully recover.",
+          "Repeat for 4–6 reps total per session."
+        ],
+        cues: "\"All 10 strokes matter — don't save anything for stroke 11.\" \"Explosive from a dead stop, just like a race start.\"",
+        progressions: "Pair directly with F26 (race-start drill) since the mechanics are nearly identical — this can serve as the fitness-focused version of that same skill.",
+        errors: "Fading by stroke 6–7 instead of holding intensity through all 10; incomplete recovery between reps, which turns this into an endurance drill instead of a power one."
+      },
+      {
+        id: "D19", title: "Stroke-Rate Change Drills",
+        objective: "Teach the crew to shift stroke rate together, as a unit, rather than each paddler drifting to their own preferred cadence.",
+        setup: "Open water, a coach or steersperson calling rate changes.",
+        steps: [
+          "Paddle at a comfortable base rate.",
+          "On the call (\"raise it!\"), the whole crew shifts to a noticeably higher rate together within 2–3 strokes, without losing synchronization (tie back to A-section timing drills).",
+          "Hold the new rate for 15–20 strokes, then call a drop back to base rate, again executed together within 2–3 strokes.",
+          "Repeat several times per session, varying how large the rate change is."
+        ],
+        cues: "\"Everyone shifts together — watch the stroker.\" \"Change the rate, not the technique.\"",
+        progressions: "Combine with D15/D16 by inserting sudden rate-change calls mid-ladder rather than telegraphing every rung in advance.",
+        errors: "Only some seats actually changing rate, leaving the boat ragged for several strokes; technique breaking down during the transition (shortened or rushed strokes at the higher rate)."
+      }
+    ]
+  },
+  {
+    letter: "E",
+    name: "Changeovers",
+    note: "Side switches — the mechanic a crew executes more than almost anything else in a race, so it has to be automatic.",
+    drills: [
+      {
+        id: "E20", title: "Standard Call-and-Switch",
+        objective: "Establish the basic, reliable change mechanic the rest of the changeover drills build on.",
+        setup: "Any water conditions. Caller is typically seat 3.",
+        steps: [
+          "Paddle at a steady rate with a designated caller (seat 3).",
+          "Caller calls \"Hut\" one stroke before the intended switch.",
+          "Crew takes one more stroke after the call, then switches paddle sides together during the recovery phase of that stroke.",
+          "Resume paddling immediately on the new side without a rhythm gap.",
+          "Repeat at a normal race-like interval (every 10–15 strokes) for a full piece."
+        ],
+        cues: "\"'Hut' means one more stroke, then switch — not switch immediately.\" \"Switch on the recovery, not the catch.\"",
+        progressions: "Once reliable at a predictable interval, move to E23/E24 for more frequent, drilled changes.",
+        errors: "Switching immediately on \"Hut\" instead of taking the extra stroke; a rhythm gap or wobble right after the switch."
+      },
+      {
+        id: "E21", title: "Tepava's 4-Step Change Sequence",
+        objective: "Give paddlers a clear internal sequence for a clean change: finish → release → lift & control → higher catch.",
+        setup: "Any water; best introduced right after E20 is basically working, as a refinement layer.",
+        steps: [
+          "Paddle at low-to-moderate rate.",
+          "On each change, cue the four steps aloud initially: \"Finish... release... lift... catch high!\"",
+          "Have paddlers focus on completing the stroke fully and staying balanced before releasing pressure, rather than rushing the switch.",
+          "The paddle should lift and move smoothly to the new side, entering with a slightly higher catch than a normal stroke to reset the rhythm cleanly.",
+          "Drop the verbal cueing once the sequence is internalized, checking periodically that it's still there."
+        ],
+        cues: "\"Finish it before you release it.\" \"Higher catch resets the rhythm.\"",
+        progressions: "Combine with E22 (on-land progression) for paddlers who are struggling to feel the sequence on the water.",
+        errors: "Releasing pressure before actually finishing the stroke (a rushed, weak change); no balance disruption is the sign this drill is working, so watch for wobble as the tell it isn't yet."
+      },
+      {
+        id: "E22", title: "On-Land Side-Switch Progression",
+        objective: "Break the changeover down into an isolated land drill for paddlers who need to feel the mechanics without the complexity of being on the water.",
+        setup: "Dry land or dock, one paddle per paddler, enough space to stand and simulate the motion.",
+        steps: [
+          "5 reps — slow paddle switches with no stroke motion at all, just the hand/paddle movement from one side to the other.",
+          "5 reps — switch and set the catch position on the new side (no full stroke).",
+          "5 reps — switch with a leg/weight-shift adjustment added, simulating the balance component.",
+          "5 reps — full simulated stroke and switch together, as close to the real water motion as land allows.",
+          "Move straight to water and apply the same sequence in the boat."
+        ],
+        cues: "Keep each rep block slow and deliberate — this is about clean mechanics, not speed, at this stage.",
+        progressions: "Use this progression early season or whenever a specific paddler's changes are consistently rough — it's a remedial tool as much as a standard warm-up.",
+        errors: "Rushing through the reps instead of feeling each isolated component; skipping straight to step 4 without the earlier steps for a paddler who actually needs them."
+      },
+      {
+        id: "E23", title: "Quick Changes Drill",
+        objective: "Drill clean, fast switches under a much higher change frequency than race pace, so normal-paced changes feel easy by comparison.",
+        setup: "Open water, caller (seat 3) tracking stroke count.",
+        steps: [
+          "Paddle at a moderate, sustainable rate.",
+          "Caller calls a change every 4–5 strokes — noticeably more frequent than the normal 10–15 stroke interval.",
+          "Crew executes the standard call-and-switch (E20) mechanic at this higher frequency, focusing on not losing boat speed or timing despite the frequent disruption.",
+          "Run for a sustained piece (several minutes) rather than just a few changes, since the fatigue of frequent changing is part of the point."
+        ],
+        cues: "\"Fast changes, same clean mechanic.\" \"Don't let the boat slow down just because the changes are more frequent.\"",
+        progressions: "Increase the piece duration over the season; occasionally drop to every 3 strokes for a short, intense burst version.",
+        errors: "Changes getting sloppy/rushed as frequency increases (this is exactly the failure mode the drill is meant to expose and fix); boat speed dropping noticeably during the drill compared to normal-interval paddling."
+      },
+      {
+        id: "E24", title: "Fast-Change Drill (Count-Based Variant)",
+        objective: "A close variant of E23 — change sides on a simple stroke count (3–5) rather than a caller's verbal cue, building a more automatic internal sense of timing.",
+        setup: "Open water; can be run with or without a caller.",
+        steps: [
+          "Establish a base rhythm.",
+          "Crew counts strokes internally (or a coach counts aloud at first) and switches sides automatically every 3–5 strokes without waiting for a \"Hut\" call.",
+          "Vary the count (sometimes 3, sometimes 5) across a session so the crew doesn't just memorize a pattern.",
+          "Debrief on how many changes felt clean vs. ragged."
+        ],
+        cues: "\"Count it yourself — don't wait to be told.\" \"Vary the count, stay sharp.\"",
+        progressions: "Combine with E25 (silent-call) as a natural next step once count-based changes are solid.",
+        errors: "Crew falling back on waiting for a verbal cue instead of actually counting; drifting out of sync when the count varies unpredictably."
+      },
+      {
+        id: "E25", title: "Silent-Call Drill",
+        objective: "Practice changes and general crew communication without verbal calls — useful for sneaking up on or passing another canoe in a race, and sharpens non-verbal crew awareness generally.",
+        setup: "Open water, ideally with a second boat nearby to simulate the \"sneak up\" race scenario, though it works solo too.",
+        steps: [
+          "Establish a baseline rhythm the whole crew can feel without needing calls (built from A2/A4 timing work).",
+          "Caller signals a change nonverbally — a tap on the gunnel, a specific paddle motion, or simply relying on the count-based feel from E24 — instead of calling \"Hut.\"",
+          "Crew executes the change based on that feel/signal alone.",
+          "If practicing the race scenario, position a second canoe ahead and practice closing the gap silently, executing changes and rate shifts without any verbal cues that would tip off the other crew."
+        ],
+        cues: "\"Feel it, don't wait to hear it.\" \"This is how you sneak up in a race.\"",
+        progressions: "Once solid on flat water, run it in light chop or wind to make the non-verbal communication genuinely challenging.",
+        errors: "Crew unconsciously reverting to verbal cues out of habit; the \"sneak up\" version failing because paddling changes tip off the other crew visually even without sound — worth debriefing on what actually gives it away."
+      }
+    ]
+  },
+  {
+    letter: "F",
+    name: "Race-Simulation & Competitive Drills",
+    note: "Everything above, under pressure — starts, chasing, close quarters, and turns, run the way a race actually feels.",
+    drills: [
+      {
+        id: "F26", title: "Race-Start Drill",
+        objective: "Practice getting the canoe up to full speed quickly after just one side of strokes, simulating an actual race start.",
+        setup: "Open water, canoe stopped or nearly stopped, enough clear water ahead for a genuine acceleration run.",
+        steps: [
+          "Bring the canoe to a stop, paddles set and ready (pairs naturally with A1, paddles-up).",
+          "On the start call, the crew paddles hard on one side for the first few strokes to get the boat moving and tracking straight, then transitions into the full crew's normal alternating pattern at high rate.",
+          "Hold high rate for 15–20 strokes to simulate a real race-start sequence, then settle into race pace.",
+          "Debrief on whether the boat tracked straight and whether the transition from one-side-start into full rhythm was clean."
+        ],
+        cues: "\"One side gets us moving, then everyone locks in.\" \"Straight and fast, not just fast.\"",
+        progressions: "Combine directly with D18 (Power-10) as the fitness/power component of the same skill; vary starting conditions (moving water, slight crosswind) once flat-water starts are reliable.",
+        errors: "Boat veering off-line during the one-side start (usually a steering/rudder timing issue); a ragged transition into full-crew rhythm where 1–2 paddlers lag behind the rate change."
+      },
+      {
+        id: "F27", title: "Rabbit Drill",
+        objective: "Build competitive intensity and teach the crew to hold form under pressure by chasing down and passing another canoe.",
+        setup: "Requires a second boat (another crew, or even a slower/staggered-start version of your own canoe if only one boat is available). Open water with room to run.",
+        steps: [
+          "Position the \"rabbit\" boat with a head start (distance depends on relative crew strength).",
+          "On the call, the chasing crew works to close the gap and pass, using rate changes (D19) and sustained power (D15/D16) as needed.",
+          "Debrief afterward: did technique hold up under the pressure of chasing, or break down (rushed strokes, lost timing)?",
+          "Rotate which crew is the \"rabbit\" across sessions so both get the chasing and the holding-the-lead experience."
+        ],
+        cues: "\"Chase with technique, not just effort.\" \"Hold your form even as you push harder.\"",
+        progressions: "Shrink the head-start gap over the season as fitness and speed improve; run it as a series of shorter reps rather than one long chase for a more intense variant.",
+        errors: "Technique completely breaking down under the competitive pressure (rushed catches, lost synchronization) — this is the main thing to watch for and correct; the \"rabbit\" boat not actually paddling at a realistic race effort, making the drill too easy."
+      },
+      {
+        id: "F28", title: "Close-Quarters Drill",
+        objective: "Build comfort and safety awareness for paddling with other canoes close by, as happens in real race situations (buoy turns, passing, crowded starts).",
+        setup: "Requires at least one other canoe. Open water with room to maneuver safely — this should be introduced carefully with experienced steerspeople.",
+        steps: [
+          "Position two canoes paddling parallel at a safe-but-close distance.",
+          "Gradually close the gap between boats while both continue paddling at a controlled pace, with steerspeople communicating clearly throughout.",
+          "Practice holding a straight line and steady rhythm despite the proximity and the visual/psychological distraction of another boat nearby.",
+          "Increase difficulty over sessions: closer distances, one boat attempting to pass the other, simulated buoy-turn crowding."
+        ],
+        cues: "\"Steersperson calls it — everyone else focuses on the stroke, not the other boat.\" \"Stay in your lane, stay in rhythm.\"",
+        progressions: "Only progress to tighter distances once the crew is genuinely comfortable — this drill has real collision risk if rushed.",
+        errors: "Paddlers watching the other boat instead of focusing on their own stroke (breaks timing); steerspeople not communicating clearly enough with each other, which is the actual safety-critical skill this drill builds."
+      },
+      {
+        id: "F29", title: "Turn Drills",
+        objective: "Practice making turns as tight and quick as possible, pairing steering technique with crew-side power management.",
+        setup: "Open water with a marker/buoy to turn around, or any fixed reference point.",
+        steps: [
+          "Approach the turn marker at race pace.",
+          "Steersperson calls the turn and applies steering strokes (draw/post, see G31) while the crew adjusts power — typically the inside-of-the-turn paddlers ease off slightly while the outside paddlers dig in, on the steersperson's direction.",
+          "Exit the turn back to full straight-line power as quickly as possible.",
+          "Repeat multiple times per session, alternating turn direction (left/right) so the crew is comfortable both ways."
+        ],
+        cues: "\"Tight and fast, not wide and slow.\" \"Power out of the turn immediately — don't coast.\"",
+        progressions: "Practice at increasing approach speed as the crew's turn technique solidifies; add a second boat for a race-realistic buoy-crowding scenario (ties to F28).",
+        errors: "Turning too wide (losing distance) or too sharp (losing speed/stability); crew failing to resume full power immediately after the turn, leaving speed on the table."
+      },
+      {
+        id: "F30", title: "Stay-Together Drill",
+        objective: "Practice pacing by having the lead boat deliberately reduce power to stay paired with a following boat — useful for coaching two crews simultaneously or building pacing awareness.",
+        setup: "Two canoes, open water.",
+        steps: [
+          "Both boats start paddling at the same point.",
+          "The lead boat (naturally faster or with a head start) is instructed to hold back just enough effort to stay roughly even with the following boat, rather than paddling at full capability.",
+          "Coach observes both boats side by side, able to compare technique directly since they're moving at matched speed.",
+          "Swap which boat is \"leading\" partway through the session."
+        ],
+        cues: "To the lead boat: \"Hold back just enough to stay even — don't coast completely.\" To the coach: use the matched pace to make direct technique comparisons between the two crews.",
+        progressions: "Use this specifically when a newer/developing crew needs to paddle alongside a stronger one for coaching purposes without the stronger crew simply pulling away.",
+        errors: "The lead boat either pulling away (holding back too little) or drifting into sloppy technique from paddling well under effort (holding back too much/poorly) — it should still feel like a real, technically sound paddling effort, just moderated."
+      }
+    ]
+  },
+  {
+    letter: "G",
+    name: "Steering & Boat Handling",
+    note: "Mostly a seat-6 skillset, but every paddler benefits from understanding what the steersperson is doing back there.",
+    drills: [
+      {
+        id: "G31", title: "Draw Stroke Practice",
+        objective: "Build steering precision through both active draw strokes and static draws (\"posts\"), emphasizing frequent small corrections over large, disruptive ones.",
+        setup: "Open water, calm conditions best for learning. Primarily a seat-6 (steersperson) skill, but seat-1 assists with steering too and benefits from understanding it.",
+        steps: [
+          "Steersperson practices the active draw: a full stroke that pulls the stern toward the paddle side, used for a stronger correction.",
+          "Steersperson practices the static draw/\"post\": holding the blade planted at an angle without a full stroke, letting the boat's forward motion do the turning work — a subtler, continuous correction.",
+          "Run a straight-line piece where the steersperson intentionally uses only small, frequent corrections (posts) rather than big, infrequent ones, and observe how much straighter and smoother the line is.",
+          "Compare with a piece using large, infrequent corrections to feel the difference directly."
+        ],
+        cues: "\"Small and often beats big and rare.\" \"Post to hold the line, draw to correct it.\"",
+        progressions: "Rotate the draw/post practice among your developing steerspeople, not just the primary one; add it to turn drills (F29) once solid on straight lines.",
+        errors: "Over-correcting with large draws that then require an opposite correction (a \"fishtailing\" line); waiting too long to correct a drift, requiring a bigger fix than if caught early."
+      },
+      {
+        id: "G32", title: "Steersman Scenario Training",
+        objective: "Build the steersperson's ability to read conditions and make sound go/no-go and course decisions — a classroom-style session as much as an on-water drill.",
+        setup: "Can be run partly on land/dock as a discussion, then applied on the water. Useful for training more than one steersperson so the club isn't dependent on a single person.",
+        steps: [
+          "Before heading out, have the steersperson (or steersperson-in-training) assess and state aloud: tidal flow, wind direction/strength, wave height, and whether conditions warrant a small-craft advisory check.",
+          "Make the go/no-go call explicitly, explaining the reasoning — this trains the judgment, not just the mechanical skill.",
+          "On the water, present the trainee steersperson with scenario prompts from the coach (\"wind just picked up — what's your call?\" \"another boat is closing on our line — what do you do?\") and have them respond in real time.",
+          "Debrief after the session on decisions made and alternatives considered."
+        ],
+        cues: "\"Say your reasoning out loud, not just your decision.\" \"When in doubt, the safe call is always right.\"",
+        progressions: "Increase scenario complexity and unpredictability as a trainee steersperson gains experience; eventually have them run a full session solo with the coach observing rather than prompting.",
+        errors: "Making the right call without understanding why (won't transfer to a new situation); coaches jumping in too quickly instead of letting the trainee work through the decision."
+      }
+    ]
+  },
+  {
+    letter: "H",
+    name: "Huli (Capsize) & Safety Drills",
+    note: "Mandatory, not optional. Every seat needs to know their job cold, before it's ever needed for real.",
+    drills: [
+      {
+        id: "H33", title: "Full Huli Recovery Drill",
+        objective: "The mandatory, most important safety drill in the plan — every paddler knows their seat's job the instant a capsize happens, and the crew can right the boat, re-board, and resume in well under a minute. Run at minimum once a year per most racing associations.",
+        setup: "Calm, warm-enough water for a real capsize; ideally supervised by an experienced coach/steersperson in a safety boat. PFDs on. Never the first time out for new paddlers without a walkthrough first (see H35).",
+        steps: [
+          "Before capsizing, stop the canoe and have every seat call out their responsibility out loud (see H36) — this primes the crew's memory right before it's needed.",
+          "Deliberately capsize the canoe (or let a natural capsize happen if practicing in surf/chop).",
+          "Each paddler executes their role: seat 1 gathers paddles and floating gear; seats 2 and 5 climb over using the iakos, face the ama, brace feet, and prepare to lift/pull; seats 3 and 4 swim to the ama, ready to scissor-kick it upright; seat 6 accounts for every paddler and directs the recovery.",
+          "On a count (\"1-2-3-GO!\"), the crew rights the canoe together in one coordinated pull/kick.",
+          "Re-enter from the ama side only, in this order: smallest paddler first with the bailer (starts bailing immediately), seat 1 places paddles back in the boat, seat 6 enters and keeps the boat pointed correctly, remaining paddlers enter as fast as safely possible.",
+          "Once ~80% of water is out, seats 1/2/5/6 begin paddling while seats 3/4 continue bailing until ~95% clear.",
+          "Debrief: time the whole sequence (target: under 15 seconds is achievable with practice) and discuss what went smoothly vs. what didn't."
+        ],
+        cues: "\"Know your job before we flip, not after.\" \"Count it out loud — '1-2-3-GO' — don't rush it alone.\" \"Ama side only, always.\"",
+        progressions: "Once smooth in calm water, progress to H34 (rough-conditions huli). Rotate seat assignments occasionally so more paddlers are comfortable with seat 2/5 duties (a taller paddler can swap in for better leverage).",
+        errors: "Entering from the wrong side (can re-flip the canoe — the single most important thing to get right); paddlers climbing onto each other or the ama instead of stabilizing themselves first; losing a paddle instead of handing it to seat 1; bailing from outside the boat instead of from inside once re-boarded.",
+      },
+      {
+        id: "H34", title: "Huli-in-Rough-Conditions Drill",
+        objective: "Address the specific gap that most crews only ever practice hulis in calm water, when real capsizes are more likely in wind and chop — this drill closes that gap deliberately.",
+        setup: "Requires genuinely rougher (but still safe and supervised) conditions than H33 — wind, chop, or light surf. Only run this once H33 is smooth and reliable in calm water, and always with a safety boat present.",
+        steps: [
+          "Run the identical sequence as H33, but in wind/chop conditions.",
+          "Pay particular attention to boat orientation before righting — in bigger waves, turn the boat perpendicular to the waves first, before attempting to right it.",
+          "Expect the recovery to take longer and be more physically demanding — debrief honestly about the difference from calm-water practice.",
+          "Reinforce cold-water safety notes if conditions warrant: get out of the water as soon as it's safe, watch for any paddler showing early signs of cold shock."
+        ],
+        cues: "\"Turn perpendicular to the waves before you right it.\" \"This will feel harder than calm water — that's the point.\"",
+        progressions: "Only increase conditions difficulty gradually and with clear safety margins — this is not a drill to push aggressively.",
+        errors: "Attempting to right the boat while still broadside to incoming waves; underestimating how much longer/harder the recovery is compared to calm water, leading to fatigue-driven mistakes."
+      },
+      {
+        id: "H35", title: "Boat-Up / Re-Boarding Drill",
+        objective: "Practice getting back into the canoe — solo or as a group — independent of a full huli scenario. A quicker, lower-stakes drill than H33, good for a pool or dock session.",
+        setup: "Pool (ideal for first-timers) or calm open water. No need to actually capsize the boat — this can be practiced with the canoe upright and paddlers simply getting in from the water.",
+        steps: [
+          "Have each paddler practice entering the (upright) canoe from the water, using the iako for leverage as needed.",
+          "Time individual re-entries, then practice as a full-crew sequence (matching the entry order from H33: smallest/bailer first, seat 1 with paddles, seat 6 last).",
+          "For newer or smaller paddlers who struggle with unassisted entry, practice partner-assisted techniques."
+        ],
+        cues: "\"Use the iako, not just your arms.\" \"Practice this solo first before we do it as a crew.\"",
+        progressions: "Good as a season-opener or a pool clinic before the first on-water H33 session, especially for new paddlers.",
+        errors: "Attempting to climb straight up over the gunnel without using the iako for leverage (much harder and less stable); rushing a struggling paddler instead of letting them find their technique."
+      },
+      {
+        id: "H36", title: "Pre-Launch Safety Brief",
+        objective: "A short, constant ritual — not a full drill — that keeps huli responsibilities fresh in everyone's mind every single time the crew launches.",
+        setup: "No special setup — this happens at the launch point or just past it, before heading into open water.",
+        steps: [
+          "Stop the canoe at the launch pylon or harbor mouth.",
+          "Go around the boat and have each seat call out their huli responsibility out loud, in order.",
+          "Confirm pumps/bailers are working and safety gear is aboard.",
+          "Proceed with the practice or race."
+        ],
+        cues: "Keep this fast — under a minute — so it becomes routine rather than a chore the crew starts skipping.",
+        progressions: "Once truly automatic, this can shorten to a quick round-robin rather than full sentences, but shouldn't ever be skipped entirely, even for experienced crews.",
+        errors: "Skipping this when in a hurry (the exact situation where it matters most); treating it as rote recitation rather than an actual mental check-in."
+      }
+    ]
+  },
+  {
+    letter: "I",
+    name: "Team Culture & Mentality",
+    note: "Not on-water mechanics, but the norms that make every other drill in this list actually work.",
+    drills: [
+      {
+        id: "I37", title: "Positive-Only Calls Rule",
+        objective: "Establish a team norm that keeps the boat a supportive, focused environment — no venting or blame on the water — which in turn keeps technical drills effective instead of turning into finger-pointing.",
+        setup: "No water setup — this is a stated norm, reinforced verbally.",
+        steps: [
+          "State the rule explicitly at the start of a season (and remind periodically): mistakes happen, everyone gets out of time or misses a stroke occasionally — don't call it out negatively in the boat.",
+          "If frustration surfaces mid-practice, the coach or steersperson redirects it: \"we'll talk about it at the dock.\"",
+          "After practice, address any real technical or attitude issues privately or with the coach, not as an in-boat callout.",
+          "Reinforce the positive side actively — cheering good pieces, encouraging paddlers through hard intervals."
+        ],
+        cues: "\"Fix it at the dock, not in the boat.\" \"Cheer, don't call out.\"",
+        progressions: "This is a constant, not something that progresses — but it's worth explicitly revisiting if a new group of paddlers joins mid-season and hasn't absorbed the norm yet.",
+        errors: "Coaches/steerspeople modeling the wrong behavior themselves (frustration is contagious — this rule has to start at the top); letting a real recurring issue go unaddressed because it's never brought up at the dock either."
+      },
+      {
+        id: "I38", title: "Session-Intention Drill",
+        objective: "Have each paddler enter every practice with one specific, personal correction in mind, rather than paddling on autopilot.",
+        setup: "No special setup — a brief moment before pushing off, ideally paired with A5 (chalk talks) or B9 (common-mistakes self-check).",
+        steps: [
+          "Before heading out, ask each paddler to silently (or aloud, in a smaller crew) name one thing they'll focus on correcting that session.",
+          "Paddle the session with that individual focus in mind, alongside whatever the crew-wide drill or theme is.",
+          "At the end of practice, briefly check in — did that focus area feel different by the end?"
+        ],
+        cues: "\"One thing, not five.\" \"What's your focus today?\"",
+        progressions: "Track focus areas informally over a season to see if the same issue keeps coming up for a given paddler — a sign it needs a dedicated coaching conversation, not just self-focus.",
+        errors: "Paddlers picking something too vague (\"paddle better\") instead of a specific, actionable correction; forgetting the intention entirely once paddling starts (a coach reminder mid-session can help)."
+      },
+      {
+        id: "I39", title: "Boat Familiarity Rule",
+        objective: "Ensure technique work actually transfers to race day by practicing in the same hull/class the crew will actually race, whenever possible.",
+        setup: "Requires club scheduling awareness — make sure the boat used in practice matches (or is very similar to) the boat used on race day.",
+        steps: [
+          "When scheduling practices, prioritize access to the actual race hull over whatever's simply available.",
+          "If a different hull must be used for a session, flag it explicitly to the crew so they know some feel (glide, stability, response) may not carry over directly.",
+          "In the weeks leading up to a race, make race-hull practice a non-negotiable priority over other logistics."
+        ],
+        cues: "\"Train in what you'll race in.\" \"Different boat, different feel — don't over-index on today's session if it's not our race hull.\"",
+        progressions: "Not a drill with reps so much as a standing scheduling principle — revisit it explicitly each time the club is deciding which boat(s) to use for a given week.",
+        errors: "Defaulting to whatever boat is easiest to access without considering the race-hull mismatch; not communicating the mismatch to paddlers, who then misattribute a feel difference to their own technique rather than the different boat."
+      }
+    ]
+  }
+];
+
+/* ===================== RENDER ===================== */
+function renderList(items, tag){
+  return `<${tag}>${items.map(i=>`<li>${i}</li>`).join('')}</${tag}>`;
+}
+
+function renderDrill(d){
+  return `
+  <details class="drill">
+    <summary><span class="drill-id">${d.id}</span> ${d.title}</summary>
+    <div class="drill__body">
+      <p class="drill__objective">${d.objective}</p>
+      <div class="drill__grid">
+        <div class="drill__block">
+          <p class="drill__label">SETUP</p>
+          <p>${d.setup}</p>
+        </div>
+        <div class="drill__block">
+          <p class="drill__label">STEPS</p>
+          ${renderList(d.steps, 'ol')}
+        </div>
+      </div>
+      <div class="callout">
+        <span class="callout__label">COACHING CUES</span>
+        ${d.cues}
+      </div>
+      <div class="drill__grid">
+        <div class="drill__block">
+          <p class="drill__label">PROGRESSIONS</p>
+          <p>${d.progressions}</p>
+        </div>
+        <div class="drill__block">
+          <p class="drill__label">WATCH FOR</p>
+          <p>${d.errors}</p>
+        </div>
+      </div>
+    </div>
+  </details>`;
+}
+
+function idRange(cat){
+  const first = cat.drills[0].id, last = cat.drills[cat.drills.length-1].id;
+  return cat.drills.length > 1 ? `Drills ${first}\u2013${last}` : `Drill ${first}`;
+}
+
+function renderCategory(cat){
+  return `
+  <section class="category" id="cat-${cat.letter}">
+    <div class="category__head">
+      <span class="category__tab">${cat.letter}</span>
+      <h2>${cat.name}</h2>
+    </div>
+    <p class="category__range">${idRange(cat)}</p>
+    <p class="category__note">${cat.note}</p>
+    ${cat.drills.map(renderDrill).join('')}
+  </section>`;
+}
+
+document.getElementById('main').innerHTML = DATA.map(renderCategory).join('');
+document.getElementById('catnav').innerHTML = DATA.map(cat =>
+  `<a href="#cat-${cat.letter}"><i>${cat.letter}</i>${cat.name}</a>`
+).join('');
+</script>
+</body>
+</html>
