@@ -452,7 +452,7 @@ function renderDrill(d){
     <div class="crossrefs"><span>See also:</span>${d.crossrefs.map(c => `<a href="${c.href}">${c.text}</a>`).join('')}</div>
   ` : '';
   return `
-  <details class="drill">
+  <details class="drill" id="${d.id}">
     <summary><span class="drill-id">${d.id.toUpperCase()}</span> ${d.title}</summary>
     <div class="drill__body">
       <p class="drill__objective">${d.objective}</p>
@@ -485,8 +485,13 @@ function renderDrill(d){
   </details>`;
 }
 
+function openDrill(id){
+  const el = document.getElementById(id);
+  if (el && el.tagName === 'DETAILS') el.open = true;
+}
+
 document.getElementById('quickref-list').innerHTML = QUICK_REF.map(q =>
-  `<li>${q.text} <a href="${q.link}">→</a></li>`
+  `<li>${q.text} <a href="${q.link}" onclick="openDrill('${q.link.slice(1)}')">→</a></li>`
 ).join('');
 
 document.getElementById('np-list').innerHTML = NEW_PADDLER.map(renderDrill).join('');
