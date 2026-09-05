@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEAT6 — Everything a Paddler Should Know</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #111111;
+    --white: #FFFFFF;
+    --orange: #E85D04;
+    --ink: #111111;
+    --ink-soft: #5B5B5B;
+    --line: #E3E3E3;
+    --paper: #FFFFFF;
+    --display: 'Archivo Black', 'Public Sans', sans-serif;
+    --sans: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--ink); }
+  a:hover{ color:var(--orange); }
+
+  .siteheader{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2.2rem 1.5rem 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .wordmark{ display:flex; align-items:center; text-decoration:none; }
+  .wordmark img{ display:block; height: 1.9rem; width:auto; }
+  .siteheader__nav{ display:flex; align-items:center; gap:1.5rem; }
+  .siteheader__nav a{
+    font-family:var(--sans);
+    font-size:0.85rem;
+    font-weight:600;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .siteheader__nav a:hover{ color:var(--orange); }
+
+  .pagehead{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 1rem;
+  }
+  .pagehead h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.8rem, 5vw, 2.8rem);
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    line-height:1.1;
+    margin: 0 0 1rem;
+  }
+  .pagehead p{
+    font-size:1.02rem;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 0.6rem;
+  }
+
+  main{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem 4rem;
+  }
+
+  /* quick reference */
+  .quickref{
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--orange);
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0 3rem;
+  }
+  .quickref h2{
+    font-family:var(--display);
+    font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    margin: 0 0 0.9rem;
+  }
+  .quickref ul{ margin:0; padding-left:1.2rem; }
+  .quickref li{ margin-bottom:0.6rem; font-size:0.95rem; }
+  .quickref li a{ font-weight:600; white-space:nowrap; }
+
+  /* part header (New Paddler / Veteran) */
+  .part{ padding-top: 2.5rem; }
+  .part__head{
+    display:flex;
+    align-items:center;
+    gap:0.9rem;
+    margin-bottom: 0.6rem;
+  }
+  .part__tab{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:2.3rem;
+    height:2.3rem;
+    border-radius:6px;
+    background: var(--orange);
+    color:#fff;
+    font-family:var(--display);
+    font-weight:600;
+    font-size:0.95rem;
+    flex-shrink:0;
+  }
+  .part__head h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:1.35rem;
+    text-transform: uppercase;
+    letter-spacing:0.01em;
+    color: var(--orange);
+    margin:0;
+    line-height:1.15;
+  }
+  .part__note{
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    margin: 0 0 1rem 3.2rem;
+    max-width: 58ch;
+  }
+
+  /* drill accordion — matches the main practice log */
+  details.drill{ border-bottom: 1px solid var(--line); }
+  details.drill:first-of-type{ border-top: 1px solid var(--line); }
+  details.drill > summary{
+    list-style:none;
+    cursor:pointer;
+    padding: 1.05rem 0.1rem;
+    display:flex;
+    align-items:baseline;
+    gap:0.7rem;
+    font-family:var(--display);
+    font-size:1.05rem;
+    font-weight:500;
+    transition: color 0.15s ease;
+  }
+  details.drill > summary:hover{ color: var(--orange); }
+  details.drill > summary::-webkit-details-marker{ display:none; }
+  details.drill > summary .drill-id{
+    color:var(--ink);
+    font-size:0.8rem;
+    font-family:var(--sans);
+    font-weight:700;
+    min-width: 2.4em;
+  }
+  details.drill > summary::after{
+    content:'+';
+    margin-left:auto;
+    font-family:var(--sans);
+    font-weight:600;
+    color:var(--ink-soft);
+    font-size:1.2rem;
+  }
+  details.drill[open] > summary::after{ content:'–'; }
+  details.drill[open] > summary{ padding-bottom:0.3rem; }
+
+  .drill__body{ padding: 0 0.1rem 1.6rem; }
+  .drill__objective{
+    font-size:0.98rem;
+    color:var(--ink-soft);
+    margin: 0 0 1.1rem;
+    max-width:62ch;
+  }
+  .drill__grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem 2rem;
+    margin-bottom: 1.1rem;
+  }
+  @media (max-width: 620px){ .drill__grid{ grid-template-columns: 1fr; } }
+  .drill__label{
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    margin: 0 0 0.4rem;
+  }
+  .drill__block p, .drill__block li{ margin:0 0 0.4rem; font-size:0.93rem; }
+  .drill__block ol{ margin:0; padding-left:1.15rem; }
+  .drill__block ol li{ margin-bottom:0.5rem; }
+
+  .callout{
+    background: var(--paper);
+    border-left: 3px solid var(--orange);
+    padding: 0.7rem 0.9rem;
+    font-size:0.92rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+  .callout__label{
+    display:block;
+    font-style:normal;
+    font-weight:700;
+    font-size:0.7rem;
+    letter-spacing:0.03em;
+    color: var(--orange);
+    margin-bottom:0.25rem;
+  }
+  .crossrefs{ font-size:0.85rem; margin-top:0.9rem; }
+  .crossrefs span{ color:var(--ink-soft); margin-right:0.5rem; }
+  .crossrefs a{ font-weight:600; margin-right:0.9rem; }
+
+  /* resource links list */
+  .linklist{
+    list-style:none;
+    margin:0 0 1.6rem;
+    padding:0;
+    border-top: 1px solid var(--line);
+  }
+  .linklist li{
+    border-bottom: 1px solid var(--line);
+    padding: 0.85rem 0.1rem;
+  }
+  .linklist a{
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+    display:block;
+  }
+  .linklist a:hover{ color:var(--orange); }
+  .linklist .note{
+    color:var(--ink-soft);
+    font-size:0.84rem;
+    margin-top:0.2rem;
+  }
+  .resource-note{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    font-style:italic;
+    max-width:60ch;
+    margin-top:0.5rem;
+  }
+
+  /* history & tradition prose section */
+  .prose{ max-width: 66ch; font-size:0.98rem; color:var(--ink); margin: 0 0 1.4rem; }
+  .prose p{ margin: 0 0 1rem; }
+  .customs{ margin:0 0 0.5rem; border-top:1px solid var(--line); }
+  .customs .row{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    padding: 0.9rem 0.1rem;
+    border-bottom:1px solid var(--line);
+  }
+  .customs .term{ font-weight:700; font-size:0.95rem; }
+  .customs .desc{ color:var(--ink-soft); font-size:0.92rem; }
+  @media (max-width: 620px){ .customs .row{ grid-template-columns: 1fr; gap:0.2rem; } }
+  .attribution{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    font-style:italic;
+    max-width:64ch;
+    margin-top:1.2rem;
+    border-left: 3px solid var(--orange);
+    padding: 0.6rem 0.9rem;
+  }
+
+  .booklist{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); }
+  .book{ display:flex; gap:1.1rem; padding: 1.2rem 0.1rem; border-bottom:1px solid var(--line); }
+  .book__spine{
+    flex-shrink:0;
+    width:0.55rem;
+    align-self:stretch;
+    border-radius:2px;
+    background: var(--orange);
+  }
+  .book__body{ flex:1; }
+  .book__title{ font-weight:700; font-size:1rem; margin:0 0 0.15rem; }
+  .book__title a{ text-decoration:none; }
+  .book__title a:hover{ color:var(--orange); }
+  .book__author{ font-size:0.85rem; color:var(--ink-soft); margin:0 0 0.6rem; }
+  .book__blurb{ font-size:0.92rem; margin:0 0 0.5rem; max-width:60ch; }
+  .book__why{ font-size:0.85rem; color:var(--ink-soft); font-style:italic; }
+
+  footer{
+    background: var(--black);
+    margin-top: 3rem;
+    padding: 3rem 1.5rem 3.5rem;
+  }
+  .footer__inner{ max-width:800px; margin: 0 auto; }
+  .footer__inner img{ height:1.6rem; width:auto; margin-bottom:1.1rem; display:block; }
+  .footer__inner p{ color: rgba(255,255,255,0.62); font-size:0.85rem; max-width: 62ch; margin:0; }
+  .footer__inner a{ color:#fff; }
+  .footer__inner a:hover{ color:var(--orange); }
+</style>
+</head>
+<body>
+
+<header class="siteheader">
+  <a class="wordmark" href="index.html"><img src="data:image/png;base64,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" alt="SEAT6"></a>
+  <div class="siteheader__nav">
+    <a href="index.html">Drill log</a>
+    <a href="sources.html">Sources</a>
+  </div>
+</header>
+
+<div class="pagehead">
+  <h1>Everything a Paddler Should Know</h1>
+  <p>Two tracks: what a brand-new paddler needs before their first real practice, and what veterans keep sharp on a recurring basis. Gear and launch-logistics checklists (radios, bailers, hull protection) live separately as club-specific ops — this page is the paddling and safety knowledge itself.</p>
+</div>
+
+<main>
+
+  <div class="quickref">
+    <h2>Quick Reference</h2>
+    <ul id="quickref-list"></ul>
+  </div>
+
+  <section class="part">
+    <div class="part__head">
+      <span class="part__tab">A</span>
+      <h2>History &amp; Tradition</h2>
+    </div>
+    <p class="part__note">The sport carries centuries of Native Hawaiian history and belief. Knowing where it comes from changes how you sit in the boat.</p>
+
+    <div class="prose">
+      <p>Outrigger canoes are how the Pacific was settled in the first place. Polynesian voyagers navigated by star, wind, and wave to reach the Hawaiian islands roughly 700 to 1,000 years ago, using double-hulled ocean-going wa'a built for open crossings, not just coastal use. Smaller outrigger canoes that followed became the everyday vessel of the islands — for fishing, trade between islands, travel, and eventually racing, when fishermen began challenging each other to be first back to shore.</p>
+      <p>The sport nearly didn't survive contact with the West. Missionary influence led Ka'ahumanu to ban canoe racing around 1830, and it stayed dormant for decades. King David Kalakaua revived it in 1875 by declaring his own birthday the official annual regatta day, and outrigger clubs have carried the tradition forward since. The 1976 voyage of the Hōkūle'a — sailing from Hawai'i to Tahiti using only traditional wayfinding, no instruments — proved to the world that the original crossings were no accident, and sparked the cultural revival the sport is still riding today.</p>
+    </div>
+
+    <div class="prose">
+      <p><b>The canoe is a crewmate, not equipment.</b> In Hawaiian tradition, a canoe is considered a living entity with its own mana — spiritual power. Some clubs describe an OC6 crew as seven, not six: the paddlers, plus the canoe itself. That's not a figure of speech to the people who carry the tradition — it's why a canoe is blessed when it's built, cared for like family, and never treated as disposable gear.</p>
+      <p>That belief shows up in the physical design, too. Look at the stern of a traditional canoe and you'll often find a small, otherwise unexplained flat spot called the <i>momoa</i> — by tradition, the seat for the canoe's own protective spirit. The story behind it goes back roughly 700 years: a priest left behind on a departing voyage leapt from a cliff and transformed into a spirit mid-flight so he could ride in that one small space. Every canoe built with a momoa since carries a version of that same idea — that the canoe watches over its crew as much as the crew relies on the canoe.</p>
+    </div>
+
+    <p class="part__note" style="margin-top:0.6rem;">Customs worth knowing — consistent across outrigger clubs from Hawai'i to Oregon to Australia:</p>
+    <div class="customs">
+      <div class="row"><div class="term">Never step over the canoe</div><div class="desc">Walk around the hull and ama instead of stepping over them, on land or at the dock. It's considered disrespectful and bad luck. If you genuinely have no other way through, the tradition is to acknowledge it — a quick apology to the canoe isn't overkill, it's the custom.</div></div>
+      <div class="row"><div class="term">Never stand in the canoe</div><div class="desc">Practical as much as spiritual — it's how canoes flip — but also treated as a mark of disrespect.</div></div>
+      <div class="row"><div class="term">No swearing in the canoe</div><div class="desc">The canoe is present for everything that happens in it. Frustration goes to the dock, not the boat — this is the same principle behind the club's "fix it at the dock" norm.</div></div>
+      <div class="row"><div class="term">Point the bow to the sea</div><div class="desc">When storing a canoe, point the bow toward the water where possible — a sign of respect, with roots in war canoes needing a fast launch.</div></div>
+      <div class="row"><div class="term">Blessing a canoe</div><div class="desc">New canoes are traditionally blessed before their first time on the water, asking for safe passage for the canoe and everyone who rides in it.</div></div>
+      <div class="row"><div class="term">Care for it like family</div><div class="desc">Clean and wipe down the canoe after every outing, the same way you'd look after a boat that's kept you and your crew safe — because that's exactly what it did.</div></div>
+    </div>
+
+    <p class="attribution">This tradition belongs to Native Hawaiian culture — outrigger clubs around the world, including the ones this whole practice log draws from, carry it forward as a living part of the sport, not a decoration. For the fuller version — history, language, and the stories behind customs like momoa — Lōkahi Canoe Club's culture page (linked in the resource list below) is worth reading in full.</p>
+  </section>
+
+  <section class="part">
+    <div class="part__head">
+      <span class="part__tab">B</span>
+      <h2>New Paddler Fundamentals</h2>
+    </div>
+    <p class="part__note">"Just starting" — go through these, in order, before your first full practice.</p>
+    <div id="np-list"></div>
+  </section>
+
+  <section class="part">
+    <div class="part__head">
+      <span class="part__tab">C</span>
+      <h2>Veteran &amp; Ongoing Practice</h2>
+    </div>
+    <p class="part__note">Experience doesn't mean exempt — these keep the whole crew sharp on a recurring cadence.</p>
+    <div id="vet-list"></div>
+  </section>
+
+  <section class="part">
+    <div class="part__head">
+      <span class="part__tab">D</span>
+      <h2>Resource Links</h2>
+    </div>
+    <p class="part__note">Official, complete versions of the rules referenced above — SCORA's own study guides and safety materials, plus further reading on history and tradition.</p>
+    <ul class="linklist" id="links-list"></ul>
+    <p class="resource-note">The SCORA PDFs appear to be scanned/image-based, so the safety and navigation drill content above is written from general knowledge, cross-checked against Pale Kai's own notes — not transcribed from these documents directly. Read the originals for SCORA's exact official wording, especially before a steersperson takes the actual test.</p>
+  </section>
+
+  <section class="part">
+    <div class="part__head">
+      <span class="part__tab">E</span>
+      <h2>Recommended Reading</h2>
+    </div>
+    <p class="part__note">Not required, just worth your time — a mix of Pacific voyaging history and one great rowing story that lands closer to paddling than you'd expect.</p>
+    <div class="booklist" id="book-list"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer__inner">
+    <img src="data:image/png;base64,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" alt="SEAT6">
+    <p>Back to the <a href="index.html">practice drill log</a> or the <a href="sources.html">full source list</a>.</p>
+  </div>
+</footer>
+
+<script>
+const QUICK_REF = [{"text": "The five instant-response commands: Hold Water, Back Paddle, Lean Left/Right, Paddles Up, Hut.", "link": "#np2"}, {"text": "Your seat's job, both paddling and in a huli.", "link": "#np3"}, {"text": "Seat 6 has the final word on any safety call \u2014 always.", "link": "#np3"}, {"text": "Basic right-of-way: stay right, pass port-to-port, yield to boats less able to maneuver than you.", "link": "#np4"}, {"text": "The wave tuck \u2014 lean forward into a wave, don't let your spine snap backward.", "link": "#np5"}, {"text": "If you huli: stay with the boat. It's your life jacket. Never swim off for gear.", "link": "#np6"}];
+const NEW_PADDLER = [{"id": "np1", "title": "Boat Orientation Walkthrough", "objective": "Give a brand-new paddler the vocabulary and physical layout knowledge needed before anything else makes sense.", "setup": "Dry land or dock, canoe out of the water or tied up calmly.", "steps": ["Walk around the canoe naming parts as you go: iako (booms), ama (outrigger float), hull, seats 1\u20136, gunnel.", "Have the new paddler point to and name each part back.", "Show how to safely board and exit the canoe at the dock/beach, and where to place hands/feet to avoid instability.", "Briefly explain the seat numbering convention (1 = bow/pace, 6 = stern/steer) so later coaching call-outs make sense immediately."], "cues": "\u201cKnow the boat before you paddle it.\u201d", "progressions": "Pair immediately with NP2 (commands) as a single first-day orientation session.", "errors": "Rushing a new paddler onto the water before this basic vocabulary sticks \u2014 coaching calls later (\u201cwatch the ama,\u201d \u201chands on the iako\u201d) won't land if this step is skipped."}, {"id": "np2", "title": "Instant-Command Recognition Drill", "objective": "Every paddler responds to the five core commands instantly and correctly, without having to think about what they mean.", "setup": "Can start on land (call and physically demonstrate response), then move to calm water.", "steps": ["On land, coach calls each command one at a time and demonstrates the expected response: Hold Water (blade flat in water to brake), Back Paddle (reverse stroke), Lean Left / Lean Right (weight shift for stability), Paddles Up (see the practice log's A1), Hut (changeover cue, E20).", "New paddler practices each response individually.", "Move to water and have the coach or steersperson call commands in random order during an easy paddle, checking for instant, correct response.", "Repeat over multiple early sessions until the response is automatic, not a translation step."], "cues": "\u201cDon't think \u2014 react.\u201d \u201cIf you have to translate the word in your head first, we're not there yet.\u201d", "progressions": "Once reliable individually, fold into normal practice by having the steersperson use these commands live rather than only in drilled isolation.", "errors": "Confusing Lean Left/Right direction (relative to the paddler vs. relative to the boat \u2014 standardize and state this explicitly the first time); freezing on \u201cHold Water\u201d instead of immediately flattening the blade.", "crossrefs": [{"text": "A1 \u2014 Paddles Up", "href": "index.html#cat-A"}, {"text": "E20 \u2014 Standard Call-and-Switch", "href": "index.html#cat-E"}]}, {"id": "np3", "title": "Seat Roles Walkthrough & Rotation", "objective": "Every paddler understands, at a basic level, what every seat does \u2014 not just their own.", "setup": "Dock or dry land discussion first, then a water session rotating a new paddler through a couple of different seats (with experienced paddlers in the others).", "steps": ["Walk through the high-level responsibilities: Seat 1 (pace-setter, calls obstacles), Seats 3/4/5 (power, bailing when needed), Seat 6 (steer/captain, final safety call).", "Explain the command chain explicitly: Seat 6's call overrides everyone else's in any safety situation, full stop.", "On the water, rotate the new paddler through 2\u20133 different seats over their first few sessions (not seat 6 yet) so they feel the difference rather than just hearing about it.", "Introduce the full huli seat responsibilities only once the paddler is comfortable in the boat generally \u2014 see NP6 for the right sequencing."], "cues": "\u201cKnow your seat cold, know your neighbor's seat roughly.\u201d", "progressions": "Veteran track (V1) revisits this at a deeper level, including steersperson training.", "errors": "Only ever teaching a new paddler their one assigned seat, leaving them lost if a lineup changes mid-practice.", "crossrefs": [{"text": "H33 \u2014 Full Huli Recovery Drill", "href": "index.html#cat-H"}]}, {"id": "np4", "title": "Basic Right-of-Way Awareness (Crew-Level)", "objective": "Every paddler \u2014 not just the steersperson \u2014 has basic situational awareness of other traffic, even though the steersperson makes the actual navigation calls.", "setup": "Real harbor/bay conditions with other boat traffic present, at a manageable level for a new paddler's first exposure.", "steps": ["Before launch, briefly cover the basics: stay to the right and pass oncoming traffic port-to-port; yield to vessels less able to maneuver than you (tugs, tankers, sailboats under sail); \u201croom at the mark\u201d applies near turns and harbor mouths, similar to a right-of-way overlap in sailing.", "On the water, have paddlers (not just the steersperson) call out other boat traffic they notice \u2014 this builds general awareness even though it's the steersperson's job to act on it.", "Debrief after: what traffic came up, what the steersperson's call was, and why."], "cues": "\u201cEveryone's eyes, one person's call.\u201d \u201cSee it, say it \u2014 Seat 6 decides.\u201d", "progressions": "The full legal detail is a steersperson-level responsibility \u2014 see V2 and SCORA's Navigation Rules study guide in the resource links below.", "errors": "Crew assuming navigation is entirely the steersperson's problem and tuning out \u2014 awareness should be shared even though authority isn't."}, {"id": "np5", "title": "Wave Tuck Position Drill", "objective": "Train seats 1 and 2 in particular (most exposed to head-on wave impact) to tuck/lean forward into heavy water rather than letting the spine snap backward.", "setup": "Progressively rougher water, starting calm.", "steps": ["On calm water, demonstrate and practice the tuck position: lean forward from the hips into an oncoming wave/chop, rather than staying upright and taking the impact through the lower back.", "Have seats 1 and 2 specifically practice this response on cue, then as an automatic reaction to real chop as conditions allow.", "Extend to the whole crew \u2014 while seats 1/2 take the brunt of it, everyone benefits from the same protective habit."], "cues": "\u201cTuck into it, don't brace against it.\u201d \u201cProtect your back before the wave gets there.\u201d", "progressions": "Build up to real heavy-water conditions gradually, always with a coach/experienced steersperson present and a clear go/no-go call.", "errors": "Staying upright/rigid through impact (the exact injury mechanism this drill exists to prevent); only training seats 1/2 and leaving the rest of the crew without the habit.", "crossrefs": [{"text": "G32 \u2014 Steersman Scenario Training", "href": "index.html#cat-G"}]}, {"id": "np6", "title": "First Huli Exposure (Solo, Calm Water)", "objective": "Before ever doing a full-crew huli drill, a brand-new paddler should be comfortable and calm capsizing and getting back into a canoe solo, in controlled, shallow, calm conditions.", "setup": "Pool or very calm, shallow, warm water. Supervised closely.", "steps": ["In an upright canoe, practice getting in and out from the water solo (this alone, no capsize yet).", "Once comfortable, walk through a controlled, gentle capsize with the new paddler, making sure they understand: let go of your paddle if trapped, push down and away from the hull if underneath, surface and immediately call out their seat number.", "Practice the \u201cdown and out\u201d push-off from underneath the hull specifically \u2014 this is the piece that's genuinely disorienting the first time and shouldn't be a surprise on race day.", "Only after this individual comfort is established should a new paddler join a full-crew huli drill."], "cues": "\u201cLet go of the paddle.\u201d \u201cPush down and away, then surface and call your number.\u201d \u201cThis is supposed to feel a little weird the first time \u2014 that's why we practice it here first.\u201d", "progressions": "Straight into full-crew huli recovery once solo comfort is confirmed.", "errors": "Skipping this step and putting a new paddler straight into a full-crew huli drill, where the disorientation of a first-time underwater experience compounds with the complexity of a coordinated crew recovery.", "crossrefs": [{"text": "H33 \u2014 Full Huli Recovery Drill", "href": "index.html#cat-H"}, {"text": "H35 \u2014 Boat-Up / Re-Boarding Drill", "href": "index.html#cat-H"}]}];
+const VETERAN = [{"id": "v1", "title": "Steersperson Development Path", "objective": "Give experienced paddlers a structured path toward steering \u2014 including the actual accreditation most will eventually need for racing.", "setup": "Combination of study (off water) and supervised on-water practice.", "steps": ["Direct steersperson candidates to SCORA's official Steersman Test & Study Guides (resource links below) \u2014 a real prerequisite covering navigation rules, righting a canoe, and basic safety in the club's official, tested version.", "Pair study with the on-water draw-stroke and scenario training already in the practice log.", "Have a veteran steersperson observe and coach a candidate through progressively more complex conditions (calm water \u2192 traffic \u2192 chop) before they steer solo.", "Track who on the roster has passed the test so the club always has coverage, not just one primary steersperson."], "cues": "\u201cStudy the rules, then feel them on the water \u2014 you need both.\u201d", "progressions": "Once accredited, a steersperson keeps developing through V2 and V3.", "errors": "Treating the written test as the finish line \u2014 passing it doesn't replace the on-water judgment-building.", "crossrefs": [{"text": "G31 \u2014 Draw Stroke Practice", "href": "index.html#cat-G"}, {"text": "G32 \u2014 Steersman Scenario Training", "href": "index.html#cat-G"}]}, {"id": "v2", "title": "Right-of-Way Scenario Drills (Steersperson-Level)", "objective": "Take the crew-level awareness from NP4 to the real, steersperson-level skill of making correct right-of-way calls under actual traffic conditions.", "setup": "Real harbor mouth / bay traffic, a range of conditions and vessel types if possible.", "steps": ["Before heading out, review the core rules explicitly: pass oncoming traffic port-to-port (\u201cred to red\u201d); an overtaking vessel keeps clear of the vessel it's passing; yield to vessels less maneuverable than an OC6 (tugs, tankers, commercial traffic, sailboats under sail); \u201croom at the mark\u201d style overlap rules apply at harbor mouths and race turns.", "On the water, have the steersperson narrate their read of each traffic situation and their planned response in real time, before it becomes urgent.", "Coach or veteran steersperson debriefs each call \u2014 was it early enough, was the read correct, was communication to the crew clear.", "Rotate this across multiple steerspeople so the club has more than one person with real scenario reps, not just test-passing."], "cues": "\u201cCall it before it's urgent.\u201d \u201cWhen in doubt, we yield \u2014 we're the smaller, harder-to-see boat.\u201d", "progressions": "Increase traffic complexity and conditions difficulty as a steersperson's judgment proves reliable. For the complete, official rules, see the Navigation Rules study guide in the resource links below.", "errors": "Waiting until a situation is already tight to make the call; not communicating the read to the crew, leaving paddlers unprepared for a sudden course change."}, {"id": "v3", "title": "Full Huli Mastery & Rotation", "objective": "Keep the full-crew huli recovery sharp for veterans, including comfort in roles they don't normally paddle.", "setup": "Calm water first, rough-conditions version periodically.", "steps": ["Run the full crew huli drill at least once a year, per most racing associations' minimums \u2014 don't let \u201cwe're experienced\u201d become a reason to skip it.", "Periodically rotate veterans through seat 2/5 duties (the physically demanding righting positions) even if that's not their normal seat, so more than one or two people can do it under real conditions.", "Time the recovery and track improvement over the season (target: under 15 seconds is achievable with practice).", "Run the rough-conditions version at least once per season with full safety precautions, since calm-water-only practice leaves a real gap."], "cues": "\u201cExperienced doesn't mean exempt.\u201d \u201cIf you've never done seat 2's job, today's the day.\u201d", "progressions": "N/A \u2014 this is a maintenance drill, run on a recurring cadence rather than progressed through.", "errors": "Assuming veteran crews don't need to repeat this \u2014 most huli-related injuries and confusion happen from rust, not from a crew never having learned it in the first place.", "crossrefs": [{"text": "H33 \u2014 Full Huli Recovery Drill", "href": "index.html#cat-H"}, {"text": "H34 \u2014 Huli-in-Rough-Conditions Drill", "href": "index.html#cat-H"}]}, {"id": "v4", "title": "Mentoring Rotation", "objective": "Use veteran experience deliberately to bring new paddlers up to speed faster, rather than leaving it to chance.", "setup": "No special setup \u2014 a scheduling/pairing practice more than a water drill.", "steps": ["Pair each new paddler with a specific veteran mentor for their first several practices.", "The mentor's job: reinforce the New Paddler basics in real time (commands, seat awareness, wave tuck habit), and be the go-to for questions rather than the coach for everything.", "Rotate mentoring duty among veterans over a season so it's shared, not always the same one or two people."], "cues": "\u201cYou don't have to be the coach \u2014 just be the answer to \u2018wait, what does that mean?\u2019\u201d", "progressions": "A natural pairing with team culture drills in the practice log.", "errors": "Informal mentoring that never actually happens because it's nobody's explicit job \u2014 assign it directly.", "crossrefs": [{"text": "I37\u2013I39 \u2014 Team Culture & Mentality", "href": "index.html#cat-I"}]}];
+const RESOURCE_LINKS = [{"title": "SCORA \u2014 Steersman Test & Study Guides", "url": "https://www.scora.org/resources/steersman-test-study-guides/", "note": "required accreditation for steering in SCORA races"}, {"title": "SCORA \u2014 US Coast Guard Navigation Rules (study guide PDF)", "url": "https://scoraorg.wpengine.com/wp-content/uploads/2021/02/Study-Guide-US-Coast-Guard-Navigation-Rules.pdf", "note": "the official rules behind V2 / NP4 above"}, {"title": "SCORA \u2014 Outrigger Basic Safety Handbook (study guide PDF)", "url": "https://scoraorg.wpengine.com/wp-content/uploads/2021/02/Study-Guide-Outrigger-Basic-Safety-Handbook.pdf", "note": ""}, {"title": "SCORA \u2014 Righting a Canoe Handbook (study guide PDF)", "url": "https://scoraorg.wpengine.com/wp-content/uploads/2021/02/Study-Guide-Righting-A-Canoe-Handbook.pdf", "note": ""}, {"title": "SCORA \u2014 Basic Canoe Safety (PDF)", "url": "https://scoraorg.wpengine.com/wp-content/uploads/2021/02/Basic-Canoe-Safety.pdf", "note": ""}, {"title": "SCORA \u2014 Righting an Outrigger Canoe (PDF)", "url": "https://scoraorg.wpengine.com/wp-content/uploads/2021/02/Righting-a-Outrigger-Canoe.pdf", "note": ""}, {"title": "SCORA \u2014 Coaching Ideas (PDF)", "url": "https://scoraorg.wpengine.com/wp-content/uploads/2021/02/Coaching-Ideas.pdf", "note": ""}, {"title": "SCORA \u2014 Risk Management Handbook (PDF)", "url": "https://www.scora.org/wp-content/uploads/2023/03/SCORA-Risk-Management-Handbook.pdf", "note": ""}, {"title": "SCORA \u2014 Safety Video", "url": "https://youtu.be/DJajX1Cuv-A", "note": ""}, {"title": "L\u014dkahi Canoe Club \u2014 Culture", "url": "https://lokahicanoeclub.org/culture/", "note": "history, momoa, manu, and Hawaiian paddling language \u2014 the fuller version of this section"}, {"title": "Maunahale (Mountain Home Canoe Club) \u2014 Outrigger Traditions", "url": "http://maunahale.org/outrigger_traditions", "note": ""}, {"title": "Heart of the Sea Canoe Club \u2014 Canoe Traditions", "url": "https://www.heartoftheseacanoeclub.com/canoe-traditions/", "note": ""}];
+
+const BOOKS = [
+  {
+    "title": "The Boys in the Boat",
+    "author": "Daniel James Brown",
+    "url": "https://www.goodreads.com/book/show/18813488",
+    "blurb": "Nine working-class kids from the University of Washington row their way to gold at Hitler's 1936 Berlin Olympics. It's a rowing book, not a paddling book \u2014 but the crew psychology, the trust in the boat next to you, and the idea that a crew moves only as well as its worst-synced stroke translate directly.",
+    "why": "If you've ever felt a crew lock into perfect timing and thought \u201cthat's the whole sport right there,\u201d this book is about exactly that feeling."
+  },
+  {
+    "title": "The Last Navigator",
+    "author": "Steve Thomas",
+    "url": "https://www.goodreads.com/book/show/707571.The_Last_Navigator",
+    "blurb": "A young American sailor travels to the tiny Micronesian island of Satawal to study under Mau Piailug, one of the last wayfinders trained to cross open ocean using only stars, swells, and birds \u2014 no compass, no charts. Piailug is the same navigator who guided the Hōkūle'a from Hawai'i to Tahiti in 1976.",
+    "why": "The clearest account of what \u201cwayfinding\u201d actually meant in practice, from the man who proved it still worked."
+  },
+  {
+    "title": "Hawaiki Rising",
+    "author": "Sam Low",
+    "url": "https://www.goodreads.com/book/show/18375122-hawaiki-rising",
+    "blurb": "The full story of the Hōkūle'a \u2014 the double-hulled voyaging canoe built in the 1970s to prove ancient Polynesians reached Hawai'i by skill, not luck. Told largely in the words of the crew who sailed her, including the 1976 Hawai'i-to-Tahiti voyage and the loss of Eddie Aikau.",
+    "why": "Direct continuation of the Hōkūle'a history above, told at full length by someone who was actually on board."
+  },
+  {
+    "title": "Sea People: The Puzzle of Polynesia",
+    "author": "Christina Thompson",
+    "url": "https://www.goodreads.com/book/show/40536236-sea-people",
+    "blurb": "How did people without metal tools or writing systems settle nearly every habitable island across ten million square miles of open Pacific? Thompson traces three centuries of outsiders trying to answer that question, and what modern linguistics, archaeology, and genetics finally settled.",
+    "why": "The best single book for the big \u201chow did this even happen\u201d question behind everything on this page."
+  },
+  {
+    "title": "The Hawaiian Canoe",
+    "author": "Tommy Holmes",
+    "url": "https://books.google.com/books/about/The_Hawaiian_Canoe.html?id=WzMHAAAACAAJ",
+    "blurb": "The definitive reference on the Hawaiian outrigger canoe itself \u2014 origins, construction, materials, and the racing canoe's evolution, built from fifteen years of research and interviews with kupuna (elders). Dense and out of print, but the source most of the culture pages on this site's Sources list cite directly.",
+    "why": "If one book to actually own, this is it \u2014 everything else on this page traces back to it somewhere."
+  }
+];
+
+function renderDrill(d){
+  const crossrefs = d.crossrefs ? `
+    <div class="crossrefs"><span>See also:</span>${d.crossrefs.map(c => `<a href="${c.href}">${c.text}</a>`).join('')}</div>
+  ` : '';
+  return `
+  <details class="drill">
+    <summary><span class="drill-id">${d.id.toUpperCase()}</span> ${d.title}</summary>
+    <div class="drill__body">
+      <p class="drill__objective">${d.objective}</p>
+      <div class="drill__grid">
+        <div class="drill__block">
+          <p class="drill__label">SETUP</p>
+          <p>${d.setup}</p>
+        </div>
+        <div class="drill__block">
+          <p class="drill__label">STEPS</p>
+          <ol>${d.steps.map(s => `<li>${s}</li>`).join('')}</ol>
+        </div>
+      </div>
+      <div class="callout">
+        <span class="callout__label">COACHING CUES</span>
+        ${d.cues}
+      </div>
+      <div class="drill__grid">
+        <div class="drill__block">
+          <p class="drill__label">PROGRESSIONS</p>
+          <p>${d.progressions}</p>
+        </div>
+        <div class="drill__block">
+          <p class="drill__label">WATCH FOR</p>
+          <p>${d.errors}</p>
+        </div>
+      </div>
+      ${crossrefs}
+    </div>
+  </details>`;
+}
+
+document.getElementById('quickref-list').innerHTML = QUICK_REF.map(q =>
+  `<li>${q.text} <a href="${q.link}">→</a></li>`
+).join('');
+
+document.getElementById('np-list').innerHTML = NEW_PADDLER.map(renderDrill).join('');
+document.getElementById('vet-list').innerHTML = VETERAN.map(renderDrill).join('');
+
+document.getElementById('links-list').innerHTML = RESOURCE_LINKS.map(l => `
+  <li>
+    <a href="${l.url}" target="_blank" rel="noopener">${l.title}</a>
+    ${l.note ? `<div class="note">${l.note}</div>` : ''}
+  </li>
+`).join('');
+
+document.getElementById('book-list').innerHTML = BOOKS.map(b => `
+  <div class="book">
+    <div class="book__spine"></div>
+    <div class="book__body">
+      <p class="book__title"><a href="${b.url}" target="_blank" rel="noopener">${b.title}</a></p>
+      <p class="book__author">${b.author}</p>
+      <p class="book__blurb">${b.blurb}</p>
+      <p class="book__why">${b.why}</p>
+    </div>
+  </div>
+`).join('');
+</script>
+</body>
+</html>
