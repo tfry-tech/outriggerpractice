@@ -210,6 +210,46 @@
   }
   .appendix p{ color:var(--ink-soft); font-size:0.92rem; max-width:62ch; margin:0 0 1rem; }
 
+  .termsbox{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .termsbox details{
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .termsbox summary{
+    cursor: pointer;
+    list-style: none;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .termsbox summary::-webkit-details-marker{ display: none; }
+  .termsbox summary::after{
+    content: '+';
+    margin-left: auto;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .termsbox details[open] summary::after{ content: '\2013'; }
+  .termsbox__links{
+    padding: 0 1rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.7rem;
+  }
+  .termsbox__links a{
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-soft);
+  }
+  .termsbox__links a:hover{ color: var(--orange); border-color: var(--orange); }
+
   footer{
     background: var(--black);
     margin-top: 3rem;
@@ -230,12 +270,20 @@
     <a href="index.html">Drill log</a>
     <a href="fundamentals.html">Fundamentals</a>
     <a href="sources.html">Sources</a>
+    <a href="glossary.html">Glossary</a>
   </div>
 </header>
 
 <div class="pagehead">
   <h1>Steering</h1>
   <p>Its own skillset, pulled together in one place: the mechanics of holding a line, the judgment to make good calls under pressure, and the race-craft that separates a steersperson who's technically correct from one who's actually fast. Draws from general club technique, Johnny Puakea's live race commentary, and the steersperson development track on the Fundamentals page.</p>
+</div>
+
+<div class="termsbox">
+  <details>
+    <summary>Terms on this page</summary>
+    <div class="termsbox__links" id="termsbox-links"></div>
+  </details>
 </div>
 
 <main>
@@ -325,6 +373,15 @@ function renderDrill(d){
 document.getElementById('foundations-list').innerHTML = FOUNDATIONS.map(renderDrill).join('');
 document.getElementById('racecraft-list').innerHTML = RACE_CRAFT.map(renderDrill).join('');
 document.getElementById('development-list').innerHTML = DEVELOPMENT.map(renderDrill).join('');
+
+const PAGE_TERMS = [
+  {slug:"carry", term:"Carry"}, {slug:"changeover", term:"Changeover"}, {slug:"draw-stroke", term:"Draw Stroke"},
+  {slug:"overlap", term:"Overlap"}, {slug:"poke", term:"Poke"}, {slug:"post", term:"Post"},
+  {slug:"rocker", term:"Rocker"}, {slug:"rum-line", term:"Rum Line"}, {slug:"steersperson", term:"Steersperson"}
+];
+document.getElementById('termsbox-links').innerHTML = PAGE_TERMS.map(t =>
+  `<a href="glossary.html#${t.slug}">${t.term}</a>`
+).join('');
 </script>
 </body>
 </html>

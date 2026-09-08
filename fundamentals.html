@@ -293,6 +293,46 @@
   .book__blurb{ font-size:0.92rem; margin:0 0 0.5rem; max-width:60ch; }
   .book__why{ font-size:0.85rem; color:var(--ink-soft); font-style:italic; }
 
+  .termsbox{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .termsbox details{
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .termsbox summary{
+    cursor: pointer;
+    list-style: none;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .termsbox summary::-webkit-details-marker{ display: none; }
+  .termsbox summary::after{
+    content: '+';
+    margin-left: auto;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .termsbox details[open] summary::after{ content: '\2013'; }
+  .termsbox__links{
+    padding: 0 1rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.7rem;
+  }
+  .termsbox__links a{
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-soft);
+  }
+  .termsbox__links a:hover{ color: var(--orange); border-color: var(--orange); }
+
   footer{
     background: var(--black);
     margin-top: 3rem;
@@ -313,12 +353,20 @@
     <a href="index.html">Drill log</a>
     <a href="steering.html">Steering</a>
     <a href="sources.html">Sources</a>
+    <a href="glossary.html">Glossary</a>
   </div>
 </header>
 
 <div class="pagehead">
   <h1>Everything a Paddler Should Know</h1>
   <p>Two tracks: what a brand-new paddler needs before their first real practice, and what veterans keep sharp on a recurring basis. Gear and launch-logistics checklists (radios, bailers, hull protection) vary from club to club, so they're left out here — this page covers the paddling and safety knowledge that applies no matter whose boat you're in.</p>
+</div>
+
+<div class="termsbox">
+  <details>
+    <summary>Terms on this page</summary>
+    <div class="termsbox__links" id="termsbox-links"></div>
+  </details>
 </div>
 
 <main>
@@ -524,6 +572,17 @@ document.getElementById('book-list').innerHTML = BOOKS.map(b => `
     </div>
   </div>
 `).join('');
+
+const PAGE_TERMS = [
+  {slug:"ama", term:"Ama"}, {slug:"changeover", term:"Changeover"}, {slug:"draw-stroke", term:"Draw Stroke"},
+  {slug:"huli", term:"Huli"}, {slug:"hut", term:"Hut"}, {slug:"iako", term:"Iako"},
+  {slug:"kupuna", term:"K\u016bpuna"}, {slug:"mana", term:"Mana"}, {slug:"manu", term:"Manu"},
+  {slug:"momoa", term:"Momoa"}, {slug:"overlap", term:"Overlap"}, {slug:"steersperson", term:"Steersperson"},
+  {slug:"wave-tuck", term:"Wave Tuck"}
+];
+document.getElementById('termsbox-links').innerHTML = PAGE_TERMS.map(t =>
+  `<a href="glossary.html#${t.slug}">${t.term}</a>`
+).join('');
 </script>
 </body>
 </html>

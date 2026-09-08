@@ -313,6 +313,46 @@
   }
   .callout--warn .callout__label{ color: var(--ink); }
 
+  .termsbox{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .termsbox details{
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .termsbox summary{
+    cursor: pointer;
+    list-style: none;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .termsbox summary::-webkit-details-marker{ display: none; }
+  .termsbox summary::after{
+    content: '+';
+    margin-left: auto;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .termsbox details[open] summary::after{ content: '\2013'; }
+  .termsbox__links{
+    padding: 0 1rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.7rem;
+  }
+  .termsbox__links a{
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-soft);
+  }
+  .termsbox__links a:hover{ color: var(--orange); border-color: var(--orange); }
+
   footer{
     background: var(--black);
     margin-top: 3rem;
@@ -342,6 +382,7 @@
     <a href="fundamentals.html">Fundamentals</a>
     <a href="steering.html">Steering</a>
     <a href="sources.html">Sources</a>
+    <a href="glossary.html">Glossary</a>
   </div>
 </header>
 
@@ -359,6 +400,13 @@
 <nav class="catnav">
   <div class="catnav__inner" id="catnav"></div>
 </nav>
+
+<div class="termsbox">
+  <details>
+    <summary>Terms on this page</summary>
+    <div class="termsbox__links" id="termsbox-links"></div>
+  </details>
+</div>
 
 <main id="main"></main>
 
@@ -1057,6 +1105,16 @@ function renderCategory(cat){
 document.getElementById('main').innerHTML = DATA.map(renderCategory).join('');
 document.getElementById('catnav').innerHTML = DATA.map(cat =>
   `<a href="#cat-${cat.letter}"><i>${cat.letter}</i>${cat.name}</a>`
+).join('');
+
+const PAGE_TERMS = [
+  {slug:"ama", term:"Ama"}, {slug:"bump", term:"Bump"}, {slug:"changeover", term:"Changeover"},
+  {slug:"draw-stroke", term:"Draw Stroke"}, {slug:"huli", term:"Huli"}, {slug:"hut", term:"Hut"},
+  {slug:"iako", term:"Iako"}, {slug:"oc6", term:"OC6"}, {slug:"post", term:"Post"},
+  {slug:"steersperson", term:"Steersperson"}, {slug:"vaa", term:"Va\u02bba"}
+];
+document.getElementById('termsbox-links').innerHTML = PAGE_TERMS.map(t =>
+  `<a href="glossary.html#${t.slug}">${t.term}</a>`
 ).join('');
 </script>
 </body>
