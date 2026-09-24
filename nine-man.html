@@ -491,6 +491,17 @@ const MECHANICS = [
       "Bailing seats (usually 4/5) can leave their skirt open briefly after a change to bail once the canoe is back up to speed, calling \u201c4/5 seat bailing\u201d so the crew knows."
     ],
     note: "The usual hesitations — \u201cthe spot's too small,\u201d \u201cI can't see the seat,\u201d \u201cit's slippery\u201d — don't hold up in practice."
+  },
+  {
+    title: "The Steersperson's Change",
+    steps: [
+      "Unlike a regular paddler, the outgoing steersperson doesn't just exit into the water \u2014 on a spec canoe, they move back onto seat 7, the rear bulkhead, rather than leaving the boat outright.",
+      "The incoming steersperson enters in the water the same way any paddler does, but comes up on the canoe from the stern rather than a middle seat.",
+      "The outgoing steersperson keeps their steering blade in the water and stays in control until the incoming steersperson is confirmed in seat 6 and has their own blade ready.",
+      "Only once the handoff is confirmed does the outgoing steersperson exit off the rear bulkhead.",
+      "On an unlimited (ultralight) canoe there's no seat 7 to move back onto \u2014 the steersperson would slip off the stern, so this specific bulkhead technique is spec-canoe only."
+    ],
+    note: "The moment with no clear steersperson in control is the highest-risk instant of any change on the canoe \u2014 the handoff has to be confirmed, not assumed."
   }
 ];
 
@@ -546,7 +557,7 @@ document.getElementById('drills-list').innerHTML = DRILLS.map(renderDrill).join(
 const PAGE_TERMS = [
   {slug:"ama", term:"Ama"}, {slug:"attack-distance", term:"Attack Distance"}, {slug:"escort-boat", term:"Escort Boat"},
   {slug:"front-support-position", term:"Front Support Position"}, {slug:"iako", term:"Iako"}, {slug:"nine-man", term:"Nine-Man"},
-  {slug:"sprayskirt", term:"Sprayskirt"}, {slug:"steersperson", term:"Steersperson"}, {slug:"water-change", term:"Water Change"}
+  {slug:"seat-7", term:"Seat 7"}, {slug:"sprayskirt", term:"Sprayskirt"}, {slug:"steersperson", term:"Steersperson"}, {slug:"water-change", term:"Water Change"}
 ];
 document.getElementById('termsbox-links').innerHTML = PAGE_TERMS.map(t =>
   `<a href="glossary.html#${t.slug}">${t.term}</a>`

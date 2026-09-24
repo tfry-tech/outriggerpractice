@@ -498,9 +498,9 @@
   <h1>The OC6 practice drill log</h1>
   <p>Every drill worth running with an outrigger crew, in one place &mdash; timing, technique, power, changeovers, race simulation, steering, and the huli drills every crew needs to know cold.</p>
   <div class="hero__stats">
-    <div class="hero__stat"><b>40</b><span>drills</span></div>
-    <div class="hero__stat"><b>10</b><span>categories</span></div>
-    <div class="hero__stat"><b>A&ndash;J</b><span>tap any drill to open it</span></div>
+    <div class="hero__stat"><b>43</b><span>drills</span></div>
+    <div class="hero__stat"><b>11</b><span>categories</span></div>
+    <div class="hero__stat"><b>A&ndash;K</b><span>tap any drill to open it</span></div>
   </div>
 </div>
 
@@ -1171,6 +1171,58 @@ const DATA = [
         cues: "\"Whoever feels it first, calls it.\" \"Seat 1 sets it, seats 3-4-5 hold it.\"",
         progressions: "Run alongside the existing Build-Then-Burst and Opening-Scouting drills once those mechanics are already solid — this drill's job is making sure every seat knows their specific piece of it, not replacing them.",
         errors: "Defaulting to a fixed caller out of habit rather than whoever actually has the best read that day — seat 6's physical position usually gives them the earliest information, even when convention has someone else making the call; power seats missing the \"caught\" moment through feel, causing a late, sluggish transition into deep power strokes."
+      }
+    ]
+  },
+  {
+    letter: "K",
+    name: "Crew & Seat Selection",
+    note: "How coaches actually decide who sits where — the mechanics of a seat race, why consistency across a season beats any single trial, and how to handle bringing an outside paddler into a top crew. Distilled from a CORA coaches' panel with Dave Krueger (Newport Aquatic Center) and Lanakila's women's coach.",
+    drills: [
+      {
+        id: "K41", title: "Seat Racing Protocol",
+        objective: "Give coaches a concrete, repeatable head-to-head format for comparing two paddlers in the same seat under matched conditions, rather than relying on impression alone.",
+        setup: "Two canoes, a fixed time interval (6 minutes is common), a stopwatch, and water conditions comparable for both boats.",
+        steps: [
+          "Both canoes start together on a count and paddle normally for the fixed interval.",
+          "At the time cutoff, the first crew to reach it holds water in place; the second crew continues paddling through the line, and their finish time relative to the first crew's stop becomes the recorded time for that piece.",
+          "Swap the two paddlers being compared into opposite boats and repeat the same interval immediately.",
+          "Chain multiple seat races back to back through the session rather than running just one isolated comparison — start the next pairing right after, so nobody knows exactly when their own race is coming.",
+          "The paddler with the shorter time across the head-to-head wins that seat race."
+        ],
+        cues: "\"You don't know who's racing next, so everyone goes full effort the whole time.\" \"Make it hard for the coach to choose.\"",
+        progressions: "Run seat races as a recurring tool through the season, not just right before a race — build a base of data over many races rather than deciding a seat off one comparison.",
+        errors: "Treating a single seat race as the final word on a seat rather than one data point among several (see K42); racing only the pair being compared instead of chaining continuous races, which lets paddlers coast until \"their turn.\""
+      },
+      {
+        id: "K42", title: "Selecting by Season-Long Consistency, Not a Single Trial",
+        objective: "Build a fairer, more reliable selection process by weighing repeated performance across a season rather than any single time trial or seat race, while grouping regular practice boats by matched commitment level.",
+        setup: "A recurring time-trial or interval already in the program (see the practice log's Power & Stroke-Rate Building drills), tracked across multiple sessions.",
+        steps: [
+          "Run the same benchmark piece — a 2k time trial, for example — repeatedly through the season rather than once, ideally weekly or near-weekly.",
+          "Track every paddler's result across every instance, not just their best or most recent one.",
+          "Watch for who performs most consistently across many repetitions, not just whoever wins any single piece — real speed shows up as a pattern, not a one-off.",
+          "When grouping paddlers for regular practice boats, keep similar competitive intent together — paddlers training and racing seriously in one boat, paddlers there for a lower-commitment experience in another — rather than mixing mismatched goals in the same lineup.",
+          "Combine the consistency data with practice-based judgment — how a crew blends, communication, boat feel — rather than reducing selection to a formula."
+        ],
+        cues: "\"Anyone can win one time trial. Watch who wins it three weeks running.\" \"Keep like with like.\"",
+        progressions: "Especially valuable heading into a season with an early lineup deadline — start the repeated benchmark early enough to have several data points before crews have to be locked in.",
+        errors: "Deciding a lineup off a single strong or weak session, when illness, a bad day, or one-off conditions can all skew a single result; mixing highly competitive paddlers with lower-commitment paddlers in the same regular practice boat, which tends to frustrate both groups."
+      },
+      {
+        id: "K43", title: "Bringing In an Outside Paddler for a Race",
+        objective: "Handle one of the more sensitive calls a coach makes carefully — adding a paddler from outside the regular roster into a top crew for a specific race — since it's a common source of real friction if handled carelessly.",
+        setup: "A specific upcoming race where an outside paddler (a former club member, a specialist steersperson, a paddler from a partner club) is genuinely being considered for a seat.",
+        steps: [
+          "Have a specific, real reason for the addition — a genuine gap the outside paddler fills — not simply that a fast paddler happens to be available.",
+          "Communicate the decision and the reasoning directly to the club member whose seat is affected, rather than letting them find out from a posted lineup.",
+          "Where possible, favor a paddler with an existing tie to the club over a complete outsider — it softens the transition considerably.",
+          "Remember that even elite crews aren't simply the fastest individuals stacked in one boat — how a group blends matters as much as raw individual speed, so weigh the fit, not just the credential.",
+          "After the race, debrief openly with the paddler who was moved aside — frame it as a specific, one-time call tied to that race, not a permanent statement about their place on the team."
+        ],
+        cues: "\"There has to be a reason, a plan, and a purpose — not just a hot shot in town.\" \"The fastest six people in a boat don't automatically win.\"",
+        progressions: "Reserve this for genuinely high-stakes races where the gap being filled is real and specific — using it routinely erodes trust in the regular roster.",
+        errors: "Adding an outside paddler without a rationale the rest of the crew can see; failing to talk to the displaced paddler before the lineup is posted, which is consistently the moment resentment actually sets in."
       }
     ]
   }
