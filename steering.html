@@ -353,6 +353,63 @@
     margin:0;
   }
 
+  .learn{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem 1.5rem;
+  }
+  .learn details{
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .learn summary{
+    cursor: pointer;
+    list-style: none;
+    padding: 1rem 1.3rem;
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .learn summary::-webkit-details-marker{ display: none; }
+  .learn summary::after{
+    content: 'Read the background \2193';
+    margin-left: auto;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .learn details[open] summary::after{ content: 'Collapse \2191'; }
+  .learn__body{
+    padding: 0 1.3rem 1.5rem;
+    max-width: 66ch;
+  }
+  .learn__body h3{
+    font-family: var(--display);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--orange);
+    margin: 1.6rem 0 0.6rem;
+  }
+  .learn__body h3:first-child{ margin-top: 0; }
+  .learn__body p{
+    font-size: 0.97rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+    color: var(--ink);
+  }
+  .learn__source{
+    font-size: 0.85rem !important;
+    color: var(--ink-soft) !important;
+    border-top: 1px solid var(--line);
+    padding-top: 0.9rem;
+    margin-top: 1.4rem !important;
+  }
+
   footer{
     background: var(--black);
     margin-top: 3rem;
@@ -405,6 +462,33 @@
   <details>
     <summary>Terms on this page</summary>
     <div class="termsbox__links" id="termsbox-links"></div>
+  </details>
+</div>
+
+<div class="learn">
+  <details>
+    <summary>Learn About Steering</summary>
+    <div class="learn__body">
+      <h3>The Forces at Play</h3>
+      <p>A canoe never travels in a perfectly straight line on its own. Because the ama sits only on one side, the hull is asymmetric by design, and that asymmetry alone is enough to pull the bow off a straight course if nothing corrects for it. On top of that baseline pull, a steersperson is constantly working against forces from outside the boat and forces from inside it.</p>
+      <p>Wind is the most common outside force. A canoe heading into the wind will naturally swing its nose to point directly at it, a behavior sometimes called weathervaning, since it mirrors how a weathervane turns to face the wind. Waves push the bow sideways and can strand a canoe in the trough between two swells, which is its own kind of stuck that takes real effort to paddle out of. Current adds a third, often less visible layer, whether it's tidal flow in open water or the pull of a river.</p>
+      <p>Inside the boat, the biggest factor is usually a power imbalance between the two sides. If one side is pulling harder than the other, the canoe will veer toward the weaker side with every stroke, and no amount of steering finesse fully solves a lineup problem (see Lineup & Boat Balance above). A paddler flaring their blade out to the side instead of pulling straight back can also spin the canoe unintentionally, seats 1 and 2 up front especially, since they have the most leverage over the bow.</p>
+
+      <h3>Hull Design: Why Some Canoes Turn Easier Than Others</h3>
+      <p>Racing canoes fall into two broad classes: spec canoes, which have a minimum weight requirement, and unlimited canoes, which are lighter and often custom-built. Within those classes, hull shape varies a lot, and the shape determines how the canoe wants to turn.</p>
+      <p>Some hulls are built with a curve along their length, called rocker, so the middle of the boat sits slightly higher than the bow and stern. A hull with more rocker pivots around its center almost like a seesaw, which makes it responsive to a poke or a turn, but also means it can drift or spin more easily if a steersperson isn't actively holding a line. Other hulls are built flatter and longer along the waterline, with little or no rocker, and track straighter as a result. They resist sudden turns, which is a tradeoff, not a flaw: what a crew gives up in agility, they get back in a hull that holds its line with less correction.</p>
+      <p>Unlimited canoes typically add a v-shaped keel underneath, which resists spinning even further and makes them track straighter still, at the cost of being harder to turn sharply. The practical upshot for a steersperson: a canoe with more rocker will cut inside a turn tighter than a keeled hull will, which matters directly in race situations where boats converge on the same buoy from different angles.</p>
+
+      <h3>The Steering Blade Itself</h3>
+      <p>A steering paddle isn't just a longer or sturdier version of a regular paddle, though it is usually both of those things. The blade is set at a shallower angle and has more surface area, which matters because a steering stroke relies on holding the blade in one position against moving water rather than pulling it through the water the way a normal stroke does.</p>
+      <p>Some steering blades are built with a slight bend near where the blade meets the shaft, called dihedral. That bend means the blade naturally sits at a small angle when it's held flat against the hull, and moving water pushes it into the hull rather than away from it, so it suctions into place with very little effort. A flat-backed blade doesn't do this on its own; the paddler has to actively angle it to get the same effect. Dihedral makes a blade easier to hold in place, but it also means the blade introduces a bit of drag even at rest, so it's a genuine tradeoff, not a strict upgrade.</p>
+      <p>One detail worth knowing regardless of blade type: the T-grip at the top of a steering paddle is built to take downward pressure, not torque. Twisting hard on the T-grip to rotate the blade is a common way to snap it off entirely, which is about the worst equipment failure that can happen mid-race. Many crews carry a spare steering blade for exactly this reason, ideally within the steersperson's own reach rather than lashed somewhere that takes real time to untie.</p>
+
+      <h3>Why "Steer First, Paddle Second"</h3>
+      <p>It's tempting to think of a steersperson's paddling contribution as free extra power for the crew, and in calm conditions it often is. But the moment a steersperson starts prioritizing their own stroke over the canoe's line, the boat starts to wander, and a wandering line costs a crew far more speed than one extra paddle gains it.</p>
+      <p>There's a psychological cost too. A crew has no direct way to see how straight their own canoe is tracking; they only feel it, through drag and through the rhythm of their own strokes. A canoe holding a clean line tells the crew, without a word, that everything's under control. The instant it starts zigzagging, that confidence breaks, even if the steersperson knows exactly what they're doing and why. That's the real argument for steering before paddling: it's not just about physics, it's about what the rest of the boat can feel from the back seat without ever turning around to look.</p>
+      <p class="learn__source">Source: <a href="sources.html#cora-steering-video">CORA \u2014 \u201cOff the Water Series\u201d: OC6 Steering Basics &amp; Tips</a></p>
+    </div>
   </details>
 </div>
 

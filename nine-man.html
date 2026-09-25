@@ -286,6 +286,63 @@
     margin:0;
   }
 
+  .learn{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem 1.5rem;
+  }
+  .learn details{
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .learn summary{
+    cursor: pointer;
+    list-style: none;
+    padding: 1rem 1.3rem;
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .learn summary::-webkit-details-marker{ display: none; }
+  .learn summary::after{
+    content: 'Read the background \2193';
+    margin-left: auto;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .learn details[open] summary::after{ content: 'Collapse \2191'; }
+  .learn__body{
+    padding: 0 1.3rem 1.5rem;
+    max-width: 66ch;
+  }
+  .learn__body h3{
+    font-family: var(--display);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--orange);
+    margin: 1.6rem 0 0.6rem;
+  }
+  .learn__body h3:first-child{ margin-top: 0; }
+  .learn__body p{
+    font-size: 0.97rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+    color: var(--ink);
+  }
+  .learn__source{
+    font-size: 0.85rem !important;
+    color: var(--ink-soft) !important;
+    border-top: 1px solid var(--line);
+    padding-top: 0.9rem;
+    margin-top: 1.4rem !important;
+  }
+
   footer{
     background: var(--black); margin-top: 3rem; padding: 3rem 1.5rem 3.5rem;
   }
@@ -340,6 +397,24 @@
 </div>
 
 <main>
+
+  <div class="learn">
+    <details>
+      <summary>Learn About Nine-Man Racing</summary>
+      <div class="learn__body">
+        <h3>The Format</h3>
+        <p>A Nine-Man crew is 9 total paddlers: 6 paddle in the canoe at any moment, and 3 ride an escort boat, rotating in and out of the canoe throughout the race via water changes. The canoe never stops or slows to a halt for a change; incoming and outgoing paddlers swap in open water while the canoe keeps moving at speed.</p>
+        <p>The format exists because long-distance ocean races run for hours, well past what six paddlers can sustain at race effort without relief. Rather than slow the whole crew down to conserve energy, Nine-Man racing keeps the canoe moving at a genuinely fast pace throughout by rotating fresh paddlers in continuously. Most SCORA long-distance races, including the Catalina Crossing, are run this way.</p>
+
+        <h3>Not the Same as a Hut Call</h3>
+        <p>It's worth being precise about this, since the two get confused: an in-boat side-switch (a "Hut" call, covered on the practice log) is about which side of the canoe you paddle on while staying seated, and it happens every 10 to 15 strokes with nobody leaving the boat. A water change is a completely different event. Someone physically exits into the ocean and someone else physically enters, while the canoe is moving at speed. The skills, the risks, and the coordination involved are not interchangeable, and coaching language shouldn't treat them as if they are.</p>
+
+        <h3>The Escort Boat's Real Job</h3>
+        <p>It's easy to think of the escort boat as just a taxi for resting paddlers, but it's doing more than that. It usually carries hydration, food, and safety gear for the whole crew, and its skipper is making real-time navigation and safety decisions for the entire race, not just ferrying people back and forth. A good escort skipper is functionally part of the coaching and safety team for the day, which is exactly why the Escort Boat Safety & Crew Etiquette section below treats the relationship with that skipper as seriously as it does.</p>
+        <p class="learn__source">Source: CORA \u2014 \u201cWater Changes\u201d and \u201cEscort Boat Safety\u201d (see <a href="sources.html">Sources</a>); format description via Johnny Puakea's 2023 Catalina Crossing broadcast.</p>
+      </div>
+    </details>
+  </div>
 
   <section class="part">
     <div class="part__head">

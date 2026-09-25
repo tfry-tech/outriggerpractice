@@ -443,6 +443,61 @@
     margin:0;
   }
 
+  .learn{
+    padding: 0 0 1.5rem;
+  }
+  .learn details{
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .learn summary{
+    cursor: pointer;
+    list-style: none;
+    padding: 1rem 1.3rem;
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .learn summary::-webkit-details-marker{ display: none; }
+  .learn summary::after{
+    content: 'Read the background \2193';
+    margin-left: auto;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .learn details[open] summary::after{ content: 'Collapse \2191'; }
+  .learn__body{
+    padding: 0 1.3rem 1.5rem;
+    max-width: 66ch;
+  }
+  .learn__body h3{
+    font-family: var(--display);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--orange);
+    margin: 1.6rem 0 0.6rem;
+  }
+  .learn__body h3:first-child{ margin-top: 0; }
+  .learn__body p{
+    font-size: 0.97rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+    color: var(--ink);
+  }
+  .learn__source{
+    font-size: 0.85rem !important;
+    color: var(--ink-soft) !important;
+    border-top: 1px solid var(--line);
+    padding-top: 0.9rem;
+    margin-top: 1.4rem !important;
+  }
+
   footer{
     background: var(--black);
     margin-top: 3rem;
@@ -617,6 +672,25 @@ const DATA = [
     letter: "B",
     name: "Stroke Technique Fundamentals",
     note: "The mechanics of a single clean stroke — catch, pull, push, return — broken into isolated pieces a paddler can actually fix one at a time.",
+    learnTitle: "Stroke Technique",
+    learn: `
+      <h3>Three Phases, Not One Motion</h3>
+      <p>It's easy to think of a paddle stroke as one continuous pull, but it actually breaks down into three distinct phases, and most technical faults trace back to blending them together instead of keeping them separate. The catch is the entry: the blade connects with the water fully before any real power gets applied. The pull follows, where pressure builds as the blade moves back through the water. The push finishes the stroke, and it's where the bulk of the power should actually be delivered, not at the front.</p>
+      <p>A common cue for this is "don't spend your power at the front" — paddlers naturally want to yank hard the instant the blade touches the water, but a strong catch is about connection, not force. The real power belongs later in the stroke, closer to the hip, where the body's rotation and the paddler's larger muscles can actually do the work.</p>
+
+      <h3>Blade Before Butt</h3>
+      <p>One useful cue for sequencing a stroke correctly is "blade before butt" — the blade and the feet engage with the water and footwell before the seat and hips commit any weight. This builds tension through the body in the right order, driven by rotation and leg drive, rather than just dropping body weight down into the seat and hoping the paddle catches up. A stroke that starts from the seat down tends to be heavy and disconnected; one that starts from the blade and feet up tends to be light and connected.</p>
+
+      <h3>Pulled, Not Pushed</h3>
+      <p>A useful mental model, borrowed from ice climbing: think of the paddle as an anchor planted in the water, and the canoe as the thing being pulled toward it, rather than the paddle being an oar that pushes water backward. Reach forward for the catch without hinging forward at the waist, and end the stroke before the lower hand passes the hip — pulling the stroke past the hip adds very little forward drive and mostly just adds unnecessary lift at the exit.</p>
+
+      <h3>Power Comes From the Core, Not the Arms</h3>
+      <p>The power phase of a stroke should be driven by the extended leg pressing down and back, torso rotation, and a locked (straight) top arm acting as a lever, not by the arms pulling on their own. Paddlers who rely on their arms tire quickly and generate less power than paddlers who route the same effort through their legs, core, and back. The exit point matters too: releasing the blade around mid-thigh to hip is about right — carrying the stroke further back than that adds drag instead of lift.</p>
+
+      <h3>The Return Matters as Much as the Pull</h3>
+      <p>After the finish, a relaxed wrist and a wide, low half-circle swing back to the catch keeps the return smooth and unhurried, rather than rushed and choppy. A tense grip on the return telegraphs into a tense, less relaxed catch on the next stroke, so treating the return as an active part of good technique, not just a reset between the strokes that "count," pays off over the length of a race.</p>
+      <p class="learn__source">Source: distilled from multiple club stroke-technique guides — see <a href="sources.html">Sources</a> for the full list.</p>
+    `,
     drills: [
       {
         id: "B6", title: "The Va'a Stroke Phase Drill",
@@ -1273,6 +1347,13 @@ function idRange(cat){
 }
 
 function renderCategory(cat){
+  const learn = cat.learn ? `
+  <div class="learn">
+    <details>
+      <summary>Learn About ${cat.learnTitle || cat.name}</summary>
+      <div class="learn__body">${cat.learn}</div>
+    </details>
+  </div>` : '';
   return `
   <section class="category" id="cat-${cat.letter}">
     <div class="category__head">
@@ -1281,6 +1362,7 @@ function renderCategory(cat){
     </div>
     <p class="category__range">${idRange(cat)}</p>
     <p class="category__note">${cat.note}</p>
+    ${learn}
     ${cat.drills.map(renderDrill).join('')}
   </section>`;
 }
