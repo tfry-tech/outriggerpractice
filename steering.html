@@ -496,7 +496,6 @@
 
   <section class="part">
     <div class="part__head">
-      <span class="part__tab">1</span>
       <h2>Foundations</h2>
     </div>
     <p class="part__note">The two core mechanical and judgment skills everything else builds on.</p>
@@ -505,7 +504,6 @@
 
   <section class="part">
     <div class="part__head">
-      <span class="part__tab">2</span>
       <h2>Race-Craft</h2>
     </div>
     <p class="part__note">Elite-level insight distilled from Johnny Puakea's live commentary during the 2023 Catalina Crossing (SCORA Nine-Man Championships) — watching top crews in real conditions rather than a structured clinic.</p>
@@ -514,7 +512,6 @@
 
   <section class="part">
     <div class="part__head">
-      <span class="part__tab">3</span>
       <h2>Steersperson Development</h2>
     </div>
     <p class="part__note">The path from first time in seat 6 to fully accredited — also covered as part of the Veteran track on the Fundamentals page.</p>
@@ -657,6 +654,53 @@ window.addEventListener('hashchange', () => {
 
 </script>
 <style>
+:target{scroll-margin-top:5rem}
+main section[id],main details[id],.glossentry[id]{scroll-margin-top:5rem}
+.tocwrap{max-width:800px;margin:0 auto 1rem;padding:0 1.5rem}
+.toc{border:1px solid var(--line,#ddd);border-radius:6px}
+.toc>summary{cursor:pointer;list-style:none;padding:.75rem 1rem;font-family:var(--display,'Archivo Black',sans-serif);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:'Show \2193';font-family:'Public Sans',sans-serif;font-size:.75rem;color:#E85D04;letter-spacing:0;text-transform:none;font-weight:600}
+.toc[open]>summary::after{content:'Hide \2191'}
+.toc ol{list-style:none;margin:0;padding:0 1rem 1rem;columns:1}
+.toc li{margin:.15rem 0}
+.toc a{text-decoration:none;color:inherit;font-weight:600;font-size:.95rem;display:block;padding:.25rem 0}
+.toc a:hover{color:#E85D04}
+.toc li.toc__sub a{font-weight:400;font-size:.88rem;padding-left:1.1rem;opacity:.85}
+.toc li.toc__learn a{font-weight:400;font-size:.88rem;padding-left:1.1rem;font-style:italic}
+.toc.toc--terms ol{columns:2;column-gap:1.5rem}
+@media(max-width:560px){.toc.toc--terms ol{columns:1}}
+</style>
+<script>
+(function(){
+  function slug(t){return t.toLowerCase().replace(/&/g,' ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+  function txt(el){var n=el.firstChild;while(n&&n.nodeType!==3)n=n.nextSibling;return (n?n.textContent:el.textContent).trim();}
+  var main=document.querySelector('main');if(!main)return;
+  var entries=[];var used={};
+  function uid(base){var id=base,i=2;while(document.getElementById(id)||used[id]){id=base+'-'+i++;}used[id]=1;return id;}
+  var nodes=main.querySelectorAll('section, .learn > details, .quickref, details.seat, .glossentry');
+  nodes.forEach(function(el){
+    var e=null;
+    if(el.matches('.quickref')){var h=el.querySelector('h2');if(!h)return;if(!el.id)el.id=uid(slug(h.textContent));e={id:el.id,title:h.textContent.trim(),cls:''};}
+    else if(el.matches('section')){var h2=el.querySelector('h2');if(!h2)return;if(!el.id)el.id=uid(slug(h2.textContent));e={id:el.id,title:h2.textContent.trim(),cls:''};}
+    else if(el.matches('.learn > details')){var s=el.querySelector('summary');if(!el.id)el.id=uid('learn-'+slug(txt(s).replace(/^Learn About\s+/i,'')));e={id:el.id,title:txt(s),cls:'toc__learn'};}
+    else if(el.matches('details.seat')){var t=el.querySelector('.seat__title');e={id:el.id,title:t?t.textContent.trim():el.id,cls:'toc__sub'};}
+    else if(el.matches('.glossentry')){var dt=el.querySelector('dt');e={id:el.id,title:dt?dt.firstChild.textContent.trim():el.id,cls:''};}
+    if(e)entries.push(e);
+  });
+  if(entries.length<2)return;
+  var terms=!!document.querySelector('.glossentry');
+  var wrap=document.createElement('div');wrap.className='tocwrap';
+  var d=document.createElement('details');d.className='toc'+(terms?' toc--terms':'');
+  var sm=document.createElement('summary');sm.textContent=terms?'Jump to a term':'On this page';d.appendChild(sm);
+  var ol=document.createElement('ol');
+  entries.forEach(function(e){var li=document.createElement('li');if(e.cls)li.className=e.cls;var a=document.createElement('a');a.href='#'+e.id;a.textContent=e.title;a.addEventListener('click',function(){var t=document.getElementById(e.id);if(t&&t.tagName==='DETAILS')t.open=true;});li.appendChild(a);ol.appendChild(li);});
+  d.appendChild(ol);wrap.appendChild(d);
+  var anchor=document.querySelector('.termsbox')||main;
+  anchor.parentNode.insertBefore(wrap,anchor);
+})();
+</script>
+<style>
 .sharebtn{display:inline-flex;align-items:center;justify-content:center;width:1.7rem;height:1.7rem;margin-left:.6rem;padding:0;border:0;background:transparent;color:#9a9a9a;cursor:pointer;border-radius:4px;vertical-align:middle;flex:none;opacity:.55;transition:opacity .15s,color .15s}
 .sharebtn:hover,.sharebtn:focus-visible{opacity:1;color:#E85D04}
 .sharebtn svg{width:1rem;height:1rem}
@@ -687,6 +731,7 @@ window.addEventListener('hashchange', () => {
   }
   document.querySelectorAll('details[id] > summary').forEach(function(s){add(s,s.parentNode.id);});
   document.querySelectorAll('.glossentry[id] > dt').forEach(function(d){add(d,d.parentNode.id);});
+  document.querySelectorAll('main section[id] h2, .quickref[id] h2').forEach(function(h){add(h,(h.closest('section')||h.closest('.quickref')).id);});
   document.querySelectorAll('li[id]').forEach(function(li){var a=li.querySelector('a, .nolink');if(a)add(li,li.id,a);});
 })();
 </script>
