@@ -138,6 +138,7 @@
     display:block;
   }
   .linklist a:hover{ color:var(--orange); }
+  .linklist .nolink{ font-weight:600; }
   .linklist .note{
     color:var(--ink-soft);
     font-size:0.86rem;
@@ -780,6 +781,34 @@ const SOURCES = [
         "note": ""
       }
     ]
+  },
+  {
+    "region": "Pale Kai's Own Newsletters & Handouts (internal)",
+    "links": [
+      {
+        "id": "pk-stretching",
+        "title": "Why Stretching Matters at Pale Kai: Protecting Our Crew, Strengthening Our Canoe (Feb 2026)",
+        "url": "",
+        "note": "Club document, no public link. Basis for the warm-up and cooldown routine in Fundamentals, Part D (C1)."
+      },
+      {
+        "id": "pk-hydration",
+        "title": "Pale Kai OC6 Performance Newsletter: Hydration & Fueling Edition (Summer 2026)",
+        "url": "",
+        "note": "Club document, no public link. Prepared by Pale Kai Paddling Club; submitted for inclusion by Nick Drake, Paramedic / Field Training Officer, San Luis Ambulance. Basis for the hydration protocol and heat-emergency warning signs in Fundamentals, Part D (C2)."
+      }
+    ]
+  },
+  {
+    "region": "Nutrition & Fueling (webinars)",
+    "links": [
+      {
+        "id": "appleby-fueling",
+        "title": "Candice Appleby, Ocean Academy: \u201cFueling for Paddling\u201d webinar and reference sheet (2026)",
+        "url": "",
+        "note": "Attended live; handout is a PDF with no public link. Basis for race-day fueling by race length and training nutrition in Fundamentals, Part D (C3, C4). Paraphrased, not quoted."
+      }
+    ]
   }
 ];
 const DIRECTORIES = [
@@ -812,7 +841,7 @@ const DIRECTORIES = [
 function renderLinkList(links){
   return `<ul class="linklist">${links.map(l => `
     <li${l.id ? ` id="${l.id}"` : ''}>
-      <a href="${l.url}" target="_blank" rel="noopener">${l.title}</a>
+      ${l.url ? `<a href="${l.url}" target="_blank" rel="noopener">${l.title}</a>` : `<span class="nolink">${l.title}</span>`}
       ${l.note ? `<div class="note">${l.note}</div>` : ''}
     </li>`).join('')}</ul>`;
 }
@@ -913,6 +942,40 @@ window.addEventListener('hashchange', () => {
   }
 });
 
+</script>
+<style>
+.sharebtn{display:inline-flex;align-items:center;justify-content:center;width:1.7rem;height:1.7rem;margin-left:.6rem;padding:0;border:0;background:transparent;color:#9a9a9a;cursor:pointer;border-radius:4px;vertical-align:middle;flex:none;opacity:.55;transition:opacity .15s,color .15s}
+.sharebtn:hover,.sharebtn:focus-visible{opacity:1;color:#E85D04}
+.sharebtn svg{width:1rem;height:1rem}
+.sharetoast{position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%);background:#111;color:#fff;font:600 .85rem 'Public Sans',sans-serif;padding:.6rem 1rem;border-radius:6px;border-left:4px solid #E85D04;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9999}
+.sharetoast.on{opacity:1}
+</style>
+<script>
+(function(){
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>';
+  var toast=document.createElement('div');toast.className='sharetoast';toast.setAttribute('role','status');document.body.appendChild(toast);
+  var timer;
+  function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(timer);timer=setTimeout(function(){toast.classList.remove('on')},1800);}
+  function copy(url){
+    if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(url);}
+    return new Promise(function(res,rej){try{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=document.execCommand('copy');document.body.removeChild(t);ok?res():rej();}catch(e){rej(e);}});
+  }
+  function add(host,id,after){
+    if(!host||host.querySelector('.sharebtn'))return;
+    var b=document.createElement('button');
+    b.type='button';b.className='sharebtn';b.innerHTML=ICON;
+    b.setAttribute('aria-label','Copy link to this section');b.title='Copy link to this section';
+    b.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var url=location.origin+location.pathname+'#'+id;
+      copy(url).then(function(){say('Link copied');}).catch(function(){say(url);});
+    });
+    if(after){after.insertAdjacentElement('afterend',b);}else{host.appendChild(b);}
+  }
+  document.querySelectorAll('details[id] > summary').forEach(function(s){add(s,s.parentNode.id);});
+  document.querySelectorAll('.glossentry[id] > dt').forEach(function(d){add(d,d.parentNode.id);});
+  document.querySelectorAll('li[id]').forEach(function(li){var a=li.querySelector('a, .nolink');if(a)add(li,li.id,a);});
+})();
 </script>
 </body>
 </html>
